@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="GravityFallsGame" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/GravityFallsGame" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+					<Add directory="h" />
+				</Compiler>
+				<Linker>
+					<Add library="sfml-graphics-d" />
+					<Add library="sfml-window-d" />
+					<Add library="sfml-system-d" />
+					<Add library="sfml-audio-d" />
+				</Linker>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/GravityFallsGame" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add directory="h" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add library="sfml-graphics" />
+					<Add library="sfml-window" />
+					<Add library="sfml-system" />
+					<Add library="sfml-audio" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-fexceptions" />
+			<Add directory="SFML/include" />
+		</Compiler>
+		<Linker>
+			<Add directory="SFML/lib" />
+		</Linker>
+		<Unit filename="Images/dipper.png" />
+		<Unit filename="Images/dipperCaminaAdelante.png" />
+		<Unit filename="Images/dipperCaminaAtras.png" />
+		<Unit filename="Images/dipperCaminaDerecha.png" />
+		<Unit filename="Images/dipperCaminaIzquierda.png" />
+		<Unit filename="Images/dipperParado.png" />
+		<Unit filename="Images/gnomo.png" />
+		<Unit filename="Images/mapa.png" />
+		<Unit filename="cpp/Cofre.cpp" />
+		<Unit filename="cpp/Collisionable.cpp" />
+		<Unit filename="cpp/Enemigo.cpp" />
+		<Unit filename="cpp/GameOver.cpp" />
+		<Unit filename="cpp/Inicio.cpp" />
+		<Unit filename="cpp/Item.cpp" />
+		<Unit filename="cpp/Personaje.cpp" />
+		<Unit filename="cpp/Pixel.cpp" />
+		<Unit filename="cpp/PrimerMapa.cpp" />
+		<Unit filename="cpp/segundoMapa.cpp" />
+		<Unit filename="h/Cofre.h" />
+		<Unit filename="h/Colisionable.h" />
+		<Unit filename="h/Enemigo.h" />
+		<Unit filename="h/GameOver.h" />
+		<Unit filename="h/Item.h" />
+		<Unit filename="h/Personaje.h" />
+		<Unit filename="h/Pixel.h" />
+		<Unit filename="h/PrimerMapa.h" />
+		<Unit filename="h/incio.h" />
+		<Unit filename="h/segundoMapa.h" />
+		<Unit filename="main.cpp" />
+		<Extensions />
+	</Project>
+</CodeBlocks_project_file>
