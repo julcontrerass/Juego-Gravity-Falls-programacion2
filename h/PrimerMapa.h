@@ -1,6 +1,5 @@
 #ifndef PRIMERMAPA_H
 #define PRIMERMAPA_H
-
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include "Personaje.h"
@@ -20,15 +19,15 @@ private:
     sf::Music musicCofre;
     sf::Font font, font2;
     sf::Text text, textVidas;
+    sf::Text textVidasEnemigo;
     sf::Sprite libroSpriteUI;
     Personaje dipper;
     Enemigo gnomo;
     Cofre cof;
     Item libro1;
-
+    Item libro2;
     bool libroRecogido;
     bool libroVisible;
-    int vidas;
     sf::Clock invulnerableClock;
     sf::Time invulnerableTime;
     sf::Time invulnerableDuration;
@@ -43,9 +42,6 @@ private:
     };
     std::vector<SpeechBubblePhase> speechBubblePhases;
     size_t currentSpeechBubblePhase;
-
-
-    // Nueva variable: zonas bloqueadas
     std::vector<sf::FloatRect> zonasBloqueadas;
 
 public:
@@ -55,8 +51,6 @@ public:
     void handleCollisions();
     void draw(sf::RenderWindow &window);
 };
-
 #endif // PRIMERMAPA_H
-
 
 

@@ -2,16 +2,16 @@
 #include "PrimerMapa.h"
 
 SegundoMapa::SegundoMapa()
-    : vidas(5), invulnerableTime(sf::Time::Zero), invulnerableDuration(sf::seconds(1))
+    : invulnerableTime(sf::Time::Zero), invulnerableDuration(sf::seconds(1))
 {
     // Inicializamos las zonas bloqueadas
-    zonasBloqueadas.push_back(sf::FloatRect(0, 0, 1367, 147)); // 1
-    zonasBloqueadas.push_back(sf::FloatRect(1133, 0, 95,848)); // 2
-    zonasBloqueadas.push_back(sf::FloatRect(1360, 0, 97,170)); // 3
-    zonasBloqueadas.push_back(sf::FloatRect(1455, 0, 90,200)); // 10
-    zonasBloqueadas.push_back(sf::FloatRect(1218, 0, 135, 180)); //27
-    zonasBloqueadas.push_back(sf::FloatRect(1490, 0, 213, 1088)); // 11
-    zonasBloqueadas.push_back(sf::FloatRect(1200, 450, 110, 110)); // 12
+    zonasBloqueadas.push_back(sf::FloatRect(0, 0, 1367, 147));
+    zonasBloqueadas.push_back(sf::FloatRect(1133, 0, 95,848));
+    zonasBloqueadas.push_back(sf::FloatRect(1360, 0, 97,170));
+    zonasBloqueadas.push_back(sf::FloatRect(1455, 0, 90,200));
+    zonasBloqueadas.push_back(sf::FloatRect(1218, 0, 135, 180));
+    zonasBloqueadas.push_back(sf::FloatRect(1490, 0, 213, 1088));
+    zonasBloqueadas.push_back(sf::FloatRect(1200, 450, 110, 110));
     zonasBloqueadas.push_back(sf::FloatRect(1200, 680, 90, 120));
     zonasBloqueadas.push_back(sf::FloatRect(0, 1085, 1696, 19));
     zonasBloqueadas.push_back(sf::FloatRect(0, 1020, 928, 90));
@@ -33,8 +33,6 @@ SegundoMapa::SegundoMapa()
     zonasBloqueadas.push_back(sf::FloatRect(0, 0, 0, 0)); //
     zonasBloqueadas.push_back(sf::FloatRect(0, 0, 0, 0)); //
 
-
-    // Añade más zonas bloqueadas según sea necesario para tu segundo mapa
 
     // Cargar la textura de fondo
     if (!tex.loadFromFile("images/mapa1.png"))

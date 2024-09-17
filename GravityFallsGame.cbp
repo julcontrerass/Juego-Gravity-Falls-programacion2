@@ -56,6 +56,7 @@
 		<Unit filename="Images/dipperParado.png" />
 		<Unit filename="Images/gnomo.png" />
 		<Unit filename="Images/mapa.png" />
+		<Unit filename="cpp/Bala.cpp" />
 		<Unit filename="cpp/Cofre.cpp" />
 		<Unit filename="cpp/Collisionable.cpp" />
 		<Unit filename="cpp/Enemigo.cpp" />
@@ -63,7 +64,6 @@
 		<Unit filename="cpp/Inicio.cpp" />
 		<Unit filename="cpp/Item.cpp" />
 		<Unit filename="cpp/Personaje.cpp" />
-		<Unit filename="cpp/Pixel.cpp" />
 		<Unit filename="cpp/PrimerMapa.cpp" />
 		<Unit filename="cpp/segundoMapa.cpp" />
 		<Unit filename="h/Cofre.h" />
@@ -72,7 +72,6 @@
 		<Unit filename="h/GameOver.h" />
 		<Unit filename="h/Item.h" />
 		<Unit filename="h/Personaje.h" />
-		<Unit filename="h/Pixel.h" />
 		<Unit filename="h/PrimerMapa.h" />
 		<Unit filename="h/incio.h" />
 		<Unit filename="h/segundoMapa.h" />

@@ -21,7 +21,6 @@ private:
 
     sf::Texture tex;
     sf::Sprite imagen;
-    int vidas;
     sf::Text textVidas;
     sf::Clock invulnerableClock;
     sf::Time invulnerableTime;
