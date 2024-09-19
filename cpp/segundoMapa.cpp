@@ -120,6 +120,18 @@ void SegundoMapa::update(sf::RenderWindow &window)
     cameraCenter.y = std::max(300.f, std::min(cameraCenter.y, static_cast<float>(tex.getSize().y) - 300.f));
     camera.setCenter(cameraCenter);
 
+    sf::Vector2f dipperPos = dipper.getPosition();
+
+    if (dipperPos.x >= 1400 && dipperPos.x <= 1500 && dipperPos.y >= 140 && dipperPos.y <= 200)
+        {
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+            {
+                PrimerMapa primerMapa;
+                primerMapa.setPersonajePosition(sf::Vector2f(1400, 800));
+                primerMapa.run(window);
+                return;
+            }
+        }
 
 }
 

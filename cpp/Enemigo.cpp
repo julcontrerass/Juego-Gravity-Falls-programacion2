@@ -1,7 +1,7 @@
 #include "Enemigo.h"
 #include <cmath>
 
-Enemigo::Enemigo() : _persiguiendo(false), _tiempoEntreDisparos(sf::seconds(1.0f)), _vidas(5) {
+Enemigo::Enemigo() : _persiguiendo(false), _tiempoEntreDisparos(sf::seconds(2.0f)), _vidas(5) {
     _textur.loadFromFile("images/gnomo.png");
     _sprite.setTexture(_textur);
     _sprite.setOrigin(_sprite.getGlobalBounds().width / 2, _sprite.getGlobalBounds().height);
@@ -12,7 +12,7 @@ Enemigo::Enemigo() : _persiguiendo(false), _tiempoEntreDisparos(sf::seconds(1.0f
 void Enemigo::update(const sf::Vector2f& personajePos) {
     float distancia = std::sqrt(std::pow(personajePos.x - _sprite.getPosition().x, 2) +
                                 std::pow(personajePos.y - _sprite.getPosition().y, 2));
-    if (distancia < 300) {
+    if (distancia < 500) {
         _persiguiendo = true;
     } else if( _vidas == 0){
         _persiguiendo = false;
@@ -24,7 +24,7 @@ void Enemigo::update(const sf::Vector2f& personajePos) {
         sf::Vector2f direccion = personajePos - _sprite.getPosition();
         float longitud = std::sqrt(direccion.x * direccion.x + direccion.y * direccion.y);
         direccion /= longitud;
-        _velocity = direccion * 3.0f;
+        _velocity = direccion * 2.0f;
         disparar(personajePos);
     } else {
         _velocity = {0, 0};

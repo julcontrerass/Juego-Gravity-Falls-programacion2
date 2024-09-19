@@ -7,6 +7,7 @@ PrimerMapa::PrimerMapa()
       currentSpeechBubblePhase(0)
 {
     // Inicializamos las zonas bloqueadas (árboles y agua)
+    // .push_back(x,y,ancho,altura) sirve para agregar un nuevo dato al final de un vector
     zonasBloqueadas.push_back(sf::FloatRect(0, 0, 1147, 100));
     zonasBloqueadas.push_back(sf::FloatRect(734, 100, 250, 63));
     zonasBloqueadas.push_back(sf::FloatRect(1140, 0, 89, 33));
@@ -85,7 +86,8 @@ PrimerMapa::PrimerMapa()
     camera.setSize(sf::Vector2f(800, 600));
 
     // Initialize the speech bubble phases
-    speechBubblePhases = {
+    speechBubblePhases =
+    {
         {"Hola soy dipper!", sf::seconds(2.0f)},
         {"Me ayudas a rescatar a mabel?", sf::seconds(2.0f)},
         {"Debemos encontrar al gnomo!", sf::seconds(2.0f)},
@@ -200,27 +202,28 @@ void PrimerMapa::update(sf::RenderWindow &window)
     cameraCenter.y = std::max(300.f, std::min(cameraCenter.y, static_cast<float>(tex.getSize().y) - 300.f));
     camera.setCenter(cameraCenter);
 
-    textVidas.setString("Vidas: " + std::to_string(dipper.getVidas()));
-    textVidasEnemigo.setString("Enemigo: " + std::to_string(gnomo.getVidas()));
+    textVidas.setString("Vidas Personaje: " + std::to_string(dipper.getVidas()));
+    textVidasEnemigo.setString("Vidas Enemigo: " + std::to_string(gnomo.getVidas()));
 
 
     // Verificar si el personaje está en la posición para cambiar al segundo mapa
     sf::Vector2f dipperPos = dipper.getPosition();
 
-    if(gnomo.getVidas() == 0){
-     if (dipperPos.x >= 1400 && dipperPos.x <= 1700 && dipperPos.y >= 774 && dipperPos.y <= 870)
+    if(gnomo.getVidas() == 0)
     {
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+        if (dipperPos.x >= 1400 && dipperPos.x <= 1700 && dipperPos.y >= 774 && dipperPos.y <= 870)
         {
-            SegundoMapa segundoMapa;
-            segundoMapa.setPersonajePosition(sf::Vector2f(1410, 200));
-            segundoMapa.run(window);
-            return;
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+            {
+                SegundoMapa segundoMapa;
+                segundoMapa.setPersonajePosition(sf::Vector2f(1410, 200));
+                segundoMapa.run(window);
+                return;
+            }
         }
     }
-    }
 
-   // Actualizar el globo de diálogo
+    // Actualizar el globo de diálogo
     sf::Time elapsedTime = speechBubbleTimer.getElapsedTime();
     if (elapsedTime >= speechBubblePhases[currentSpeechBubblePhase].duration)
     {
@@ -243,15 +246,16 @@ void PrimerMapa::update(sf::RenderWindow &window)
         }
     }
 
-    if (gnomo.estaVivo()){
-     for (auto& bala : gnomo.getBullets())
+    if (gnomo.estaVivo())
     {
-        if (bala.isAlive() && dipper.getBounds().intersects(bala.getBounds()))
+        for (auto& bala : gnomo.getBullets())
         {
-            dipper.recibirDanio();
-            bala.kill();
+            if (bala.isAlive() && dipper.getBounds().intersects(bala.getBounds()))
+            {
+                dipper.recibirDanio();
+                bala.kill();
+            }
         }
-    }
     }
 }
 
@@ -267,17 +271,18 @@ void PrimerMapa::handleCollisions()
     }
 
 
-    if (!gnomo.getVidas()){
-        if (dipper.isCollision(cof))
+    if (!gnomo.getVidas())
     {
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && !cof.estaAbierto())
+        if (dipper.isCollision(cof))
         {
-            musicCofre.play();
-            cof.cambiarTextura();
-            libro1.setVisible(true);
-            libroVisible = true;
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && !cof.estaAbierto())
+            {
+                musicCofre.play();
+                cof.cambiarTextura();
+                libro1.setVisible(true);
+                libroVisible = true;
+            }
         }
-    }
     }
 
 }
@@ -290,9 +295,9 @@ void PrimerMapa::draw(sf::RenderWindow &window)
     window.draw(cof);
     window.draw(dipper);
     if (gnomo.estaVivo())
-        {
-            window.draw(gnomo);
-        }
+    {
+        window.draw(gnomo);
+    }
 
 
     // Dibuja el globo de diálogo si no es la fase vacía
@@ -303,7 +308,7 @@ void PrimerMapa::draw(sf::RenderWindow &window)
         // Obtener los límites del texto
         sf::FloatRect textBounds = speechBubble.getLocalBounds();
 
-       // Calcular el ancho y la altura del cuadro de diálogo
+        // Calcular el ancho y la altura del cuadro de diálogo
         float bubbleWidth = std::max(textBounds.width + 20.f, 200.f); // Asegurar un ancho mínimo
         float bubbleHeight = textBounds.height + 20.f;
 
@@ -344,6 +349,11 @@ void PrimerMapa::draw(sf::RenderWindow &window)
         libroVisible = true;
         window.draw(libro1);
     }
+}
+
+void PrimerMapa::setPersonajePosition(const sf::Vector2f& position)
+{
+    dipper.setPosition(position);
 }
 
 

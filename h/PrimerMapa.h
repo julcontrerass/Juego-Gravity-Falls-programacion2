@@ -50,6 +50,7 @@ public:
     void update(sf::RenderWindow &window);
     void handleCollisions();
     void draw(sf::RenderWindow &window);
+    void setPersonajePosition(const sf::Vector2f& position);
 };
 #endif // PRIMERMAPA_H
 

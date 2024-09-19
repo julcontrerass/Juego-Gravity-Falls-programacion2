@@ -981,7 +981,7 @@
 1726522286 source:c:\users\xxjul\onedrive\escritorio\juego-gravity-falls-programacion2\cpp\collisionable.cpp
 	"Colisionable.h"
 
-1726587852 source:c:\users\xxjul\onedrive\escritorio\juego-gravity-falls-programacion2\cpp\enemigo.cpp
+1726602103 source:c:\users\xxjul\onedrive\escritorio\juego-gravity-falls-programacion2\cpp\enemigo.cpp
 	"Enemigo.h"
 	<cmath>
 
@@ -1123,12 +1123,12 @@
 	"Bala.h"
 	<vector>
 
-1726592394 source:c:\users\xxjul\onedrive\escritorio\juego-gravity-falls-programacion2\cpp\primermapa.cpp
+1726756991 source:c:\users\xxjul\onedrive\escritorio\juego-gravity-falls-programacion2\cpp\primermapa.cpp
 	"PrimerMapa.h"
 	"segundoMapa.h"
 	<stdexcept>
 
-1726585253 c:\users\xxjul\onedrive\escritorio\juego-gravity-falls-programacion2\h\primermapa.h
+1726756991 c:\users\xxjul\onedrive\escritorio\juego-gravity-falls-programacion2\h\primermapa.h
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 	"Personaje.h"
@@ -1144,7 +1144,7 @@
 	<vector>
 	"personaje.h"
 
-1726589090 source:c:\users\xxjul\onedrive\escritorio\juego-gravity-falls-programacion2\cpp\segundomapa.cpp
+1726757373 source:c:\users\xxjul\onedrive\escritorio\juego-gravity-falls-programacion2\cpp\segundomapa.cpp
 	"segundoMapa.h"
 	"PrimerMapa.h"
 
