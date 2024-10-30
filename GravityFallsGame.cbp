@@ -14,6 +14,8 @@
 				<Compiler>
 					<Add option="-g" />
 					<Add directory="h" />
+					<Add directory="../JuegoUtn" />
+					<Add directory="./" />
 				</Compiler>
 				<Linker>
 					<Add library="sfml-graphics-d" />
@@ -30,6 +32,8 @@
 				<Compiler>
 					<Add option="-O2" />
 					<Add directory="h" />
+					<Add directory="../JuegoUtn" />
+					<Add directory="./" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -48,34 +52,79 @@
 		<Linker>
 			<Add directory="SFML/lib" />
 		</Linker>
-		<Unit filename="Images/dipper.png" />
-		<Unit filename="Images/dipperCaminaAdelante.png" />
-		<Unit filename="Images/dipperCaminaAtras.png" />
-		<Unit filename="Images/dipperCaminaDerecha.png" />
-		<Unit filename="Images/dipperCaminaIzquierda.png" />
-		<Unit filename="Images/dipperParado.png" />
-		<Unit filename="Images/gnomo.png" />
-		<Unit filename="Images/mapa.png" />
-		<Unit filename="cpp/Bala.cpp" />
-		<Unit filename="cpp/Cofre.cpp" />
-		<Unit filename="cpp/Collisionable.cpp" />
-		<Unit filename="cpp/Enemigo.cpp" />
-		<Unit filename="cpp/GameOver.cpp" />
-		<Unit filename="cpp/Inicio.cpp" />
-		<Unit filename="cpp/Item.cpp" />
-		<Unit filename="cpp/Personaje.cpp" />
-		<Unit filename="cpp/PrimerMapa.cpp" />
-		<Unit filename="cpp/segundoMapa.cpp" />
-		<Unit filename="h/Cofre.h" />
-		<Unit filename="h/Colisionable.h" />
-		<Unit filename="h/Enemigo.h" />
-		<Unit filename="h/GameOver.h" />
-		<Unit filename="h/Item.h" />
-		<Unit filename="h/Personaje.h" />
-		<Unit filename="h/PrimerMapa.h" />
-		<Unit filename="h/incio.h" />
-		<Unit filename="h/segundoMapa.h" />
+		<Unit filename="bebidaDeVida.h" />
+		<Unit filename="bill.h" />
+		<Unit filename="cofre.h" />
+		<Unit filename="colisiones.h" />
+		<Unit filename="cuartoMapa.h" />
+		<Unit filename="cuchillo.h" />
+		<Unit filename="dipper.h" />
+		<Unit filename="disparo.h" />
+		<Unit filename="estadoDeMapas.h" />
+		<Unit filename="gameOver.h" />
+		<Unit filename="gancho.h" />
+		<Unit filename="gideon.h" />
+		<Unit filename="gnomo.h" />
+		<Unit filename="inicio.h" />
+		<Unit filename="libro1.h" />
+		<Unit filename="libro2.h" />
+		<Unit filename="libro3.h" />
+		<Unit filename="linterna.h" />
+		<Unit filename="mabbel.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="mapaFinal.h" />
+		<Unit filename="menu.h" />
+		<Unit filename="menuControles.h" />
+		<Unit filename="minotauro.h" />
+		<Unit filename="mochila.h" />
+		<Unit filename="novenoMapa.h" />
+		<Unit filename="octavoMapa.h" />
+		<Unit filename="pocionDeVelocidad.h" />
+		<Unit filename="primerMapa.h" />
+		<Unit filename="quintoMapa.h" />
+		<Unit filename="segundoMapa.h" />
+		<Unit filename="septimoMapa.h" />
+		<Unit filename="sextoMapa.h" />
+		<Unit filename="soos.h" />
+		<Unit filename="src/Enemigos/bill.cpp" />
+		<Unit filename="src/Enemigos/gideon.cpp" />
+		<Unit filename="src/Enemigos/gnomo.cpp" />
+		<Unit filename="src/Enemigos/minotauro.cpp" />
+		<Unit filename="src/colisiones.cpp" />
+		<Unit filename="src/cuartoMapa.cpp" />
+		<Unit filename="src/dipper.cpp" />
+		<Unit filename="src/disparo.cpp" />
+		<Unit filename="src/estadoDeMapas.cpp" />
+		<Unit filename="src/gameOver.cpp" />
+		<Unit filename="src/inicio.cpp" />
+		<Unit filename="src/items/bebidaDeVida.cpp" />
+		<Unit filename="src/items/cofre.cpp" />
+		<Unit filename="src/items/cuchillo.cpp" />
+		<Unit filename="src/items/gancho.cpp" />
+		<Unit filename="src/items/libro1.cpp" />
+		<Unit filename="src/items/libro2.cpp" />
+		<Unit filename="src/items/libro3.cpp" />
+		<Unit filename="src/items/linterna.cpp" />
+		<Unit filename="src/items/pocionDeVelocidad.cpp" />
+		<Unit filename="src/mabbel.cpp" />
+		<Unit filename="src/mapaFinal.cpp" />
+		<Unit filename="src/menu.cpp" />
+		<Unit filename="src/menuControles.cpp" />
+		<Unit filename="src/mochila.cpp" />
+		<Unit filename="src/novenoMapa.cpp" />
+		<Unit filename="src/octavoMapa.cpp" />
+		<Unit filename="src/primerMapa.cpp" />
+		<Unit filename="src/quintoMapa.cpp" />
+		<Unit filename="src/segundoMapa.cpp" />
+		<Unit filename="src/septimoMapa.cpp" />
+		<Unit filename="src/sextoMapa.cpp" />
+		<Unit filename="src/soos.cpp" />
+		<Unit filename="src/stan.cpp" />
+		<Unit filename="src/tercerMapa.cpp" />
+		<Unit filename="src/wendy.cpp" />
+		<Unit filename="stan.h" />
+		<Unit filename="tercerMapa.h" />
+		<Unit filename="wendy.h" />
 		<Extensions />
 	</Project>
 </CodeBlocks_project_file>
