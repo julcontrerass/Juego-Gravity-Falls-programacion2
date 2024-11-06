@@ -61,6 +61,7 @@
 		<Unit filename="dipper.h" />
 		<Unit filename="disparo.h" />
 		<Unit filename="estadoDeMapas.h" />
+		<Unit filename="estadoDelJuego.h" />
 		<Unit filename="gameOver.h" />
 		<Unit filename="gancho.h" />
 		<Unit filename="gideon.h" />
@@ -95,6 +96,7 @@
 		<Unit filename="src/dipper.cpp" />
 		<Unit filename="src/disparo.cpp" />
 		<Unit filename="src/estadoDeMapas.cpp" />
+		<Unit filename="src/estadoDelJuego.cpp" />
 		<Unit filename="src/gameOver.cpp" />
 		<Unit filename="src/inicio.cpp" />
 		<Unit filename="src/items/bebidaDeVida.cpp" />
