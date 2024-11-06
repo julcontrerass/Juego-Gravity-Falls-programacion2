@@ -1,4 +1,4 @@
-#include "./menuControles.h"
+#include "../../menuControles.h"
 
 MenuControles::MenuControles() : isOpen(false) {
     // Cargar la fuente

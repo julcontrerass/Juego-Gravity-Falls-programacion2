@@ -1,4 +1,4 @@
-#include "pocionDeVelocidad.h"
+#include "../../pocionDeVelocidad.h"
 
 PocionDeVelocidad::PocionDeVelocidad() {
     _textur.loadFromFile("./Imagenes/Items/PocionDeVelocidad.png");

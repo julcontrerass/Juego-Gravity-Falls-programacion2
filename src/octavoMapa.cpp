@@ -1,4 +1,4 @@
-#include "octavoMapa.h"
+#include "../octavoMapa.h"
 #include <stdexcept>
 #include <cmath>
 

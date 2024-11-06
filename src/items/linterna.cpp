@@ -1,4 +1,4 @@
-#include "linterna.h"
+#include "../../linterna.h"
 Linterna::Linterna() {
     _textur.loadFromFile("./Imagenes/Items/Linterna.png");
     _sprite.setTexture(_textur);

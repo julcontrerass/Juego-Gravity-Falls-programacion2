@@ -1,4 +1,4 @@
-#include "libro3.h"
+#include "../../libro3.h"
 
 Libro3::Libro3(){
     _textur.loadFromFile("./Imagenes/Items/Libro3.png");

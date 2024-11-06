@@ -1,4 +1,4 @@
-#include "mabbel.h"
+#include "../../mabbel.h"
 
 #include <cmath>
 

@@ -111,15 +111,12 @@ void menuInicio::draw(sf::RenderWindow& window) {
     window.draw(imagenLiz);
     window.draw(imagenJuani);
 
-    // Handle mouse hover and click, or space key press
     sf::Vector2i mousePos = sf::Mouse::getPosition(window);
     bool mouseInteracted = false;
 
     for(int i = 0; i < 3; i++) {
-        // Check for mouse hover
         if(menu[i].getGlobalBounds().contains(mousePos.x, mousePos.y)) {
             if(Opciones != i) {
-                // Change previous selection back to white
                 menu[Opciones].setFillColor(sf::Color::White);
                 menu[Opciones].setStyle(sf::Text::Regular);
 
@@ -135,7 +132,6 @@ void menuInicio::draw(sf::RenderWindow& window) {
             mouseInteracted = true;
         }
 
-        // Execute action if either mouse is clicked or space is pressed on the currently selected option
         if ((sf::Mouse::isButtonPressed(sf::Mouse::Left) && menu[i].getGlobalBounds().contains(mousePos.x, mousePos.y)) ||
             (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && i == Opciones)) {
             if (i == 2) {
@@ -144,7 +140,6 @@ void menuInicio::draw(sf::RenderWindow& window) {
             else if (i == 0) {
                 IniciarJuego(window);
             }
-            // Add any other menu options here
             break;
         }
     }
@@ -201,9 +196,9 @@ bool menuInicio::IniciarJuego(sf::RenderWindow& window) {
     if (!gameStarted) {
         musicaFondoRef->stop();
         gameStarted = true;
-        return true; // Indica que el juego ha comenzado
+        return true;
     }
-    return false; // El juego ya ha comenzado
+    return false;
 }
 void menuInicio::VinculoLinks(sf::RenderWindow& window) {
 
@@ -211,17 +206,14 @@ void menuInicio::VinculoLinks(sf::RenderWindow& window) {
     if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
         sf::Vector2i mousePos = sf::Mouse::getPosition(window);
         if (imagenJuli.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
-            // Redirect to the first link
             std::string link1 = "https://github.com/julcontrerass";
             system(("start " + link1).c_str());
         }
         else if (imagenLiz.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
-            // Redirect to the second link
             std::string link2 = "https://github.com/LizFl0res";
             system(("start " + link2).c_str());
         }
         else if (imagenJuani.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
-            // Redirect to the third link
             std::string link3 = "https://github.com/nemi1414";
             system(("start " + link3).c_str());
         }

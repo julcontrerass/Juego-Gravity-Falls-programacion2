@@ -1,5 +1,5 @@
-#include "novenoMapa.h"
-#include "../quintoMapa.h"
+#include "../../novenoMapa.h"
+#include "../../quintoMapa.h"
 #include <stdexcept>
 #include <cmath>
 

@@ -1,4 +1,4 @@
-#include "gancho.h"
+#include "../../gancho.h"
 
 Gancho::Gancho() {
     _textur.loadFromFile("./Imagenes/Items/Gancho.png");

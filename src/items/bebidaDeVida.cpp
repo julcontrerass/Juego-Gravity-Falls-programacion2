@@ -1,4 +1,4 @@
-#include "bebidaDeVida.h"
+#include "../../bebidaDeVida.h"
 
 BebidaDeVida::BebidaDeVida(){
     _textur.loadFromFile("./Imagenes/Items/BebidaDeVida.png");

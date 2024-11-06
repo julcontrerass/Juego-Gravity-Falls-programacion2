@@ -1,4 +1,4 @@
-#include "cuartoMapa.h"
+#include "../cuartoMapa.h"
 #include "../segundoMapa.h"
 #include "../quintoMapa.h"
 

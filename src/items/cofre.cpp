@@ -1,6 +1,4 @@
-#include "cofre.h"
-
-#include "cofre.h"
+#include "../../cofre.h"
 
 // Inicialización del array estático
 bool Cofre::cofresAbiertos[MAX_COFRES] = {false};  // Todos los cofres comienzan cerrados
