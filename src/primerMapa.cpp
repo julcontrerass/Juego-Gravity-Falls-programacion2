@@ -66,7 +66,7 @@ void PrimerMapa::update(sf::RenderWindow &window)
 {
     dipper.update();
     stan.update();
-
+    std::cout << estadoDelJuego.tresLibros() << std::endl;
     sf::Vector2f oldPosition = dipper.getPosition();
     sf::Vector2f newPosition = dipper.getPosition();
     sf::FloatRect newBounds = dipper.getBounds();
@@ -118,32 +118,32 @@ void PrimerMapa::update(sf::RenderWindow &window)
 
 
     /// vemos si el jugador está cerca de Stan y el diálogo no está completado para inicializarlo
-    sf::Vector2f dipperPos = dipper.getPosition();
+     sf::Vector2f dipperPos = dipper.getPosition();
     sf::Vector2f stanPos = stan.getPosition();
     float distancia = std::sqrt(
                           std::pow(dipperPos.x - stanPos.x, 2) +
                           std::pow(dipperPos.y - stanPos.y, 2)
                       );
 
-    if (!dialogoIniciado)
-    {
-        if (distancia < 200)
-        {
+    // Modifica la lógica del diálogo
+    const float DISTANCIA_DIALOGO = 100.0f; // Ajusta este valor según necesites
+
+    if (distancia < DISTANCIA_DIALOGO) {
+        if (!dialogoIniciado || (estadoDelJuego.tresLibros() && stan.dialogoPermanentementeCompletado())) {
             stan.iniciarDialogo();
             dialogoIniciado = true;
-            if (stan.dialogoCompletado())
-            {
-                dialogoIniciado = false;
-            }
         }
+    } else {
+        dialogoIniciado = false;
     }
+
     // Actualizar el diálogo con el tiempo transcurrido
     stan.actualizarDialogo(_relojDialogo.restart().asSeconds());
 
     //MOVIMIENTOS
 
-     static bool movimientoStanIniciado = false;
-    if (!movimientoStanIniciado && stan.segundoDialogoCompletado() && mochila.tresLibros())
+    static bool movimientoStanIniciado = false;
+    if (!movimientoStanIniciado && stan.segundoDialogoCompletado() && estadoDelJuego.tresLibros())
     {
         std::cout << "Iniciando movimiento automático de Stan después del segundo diálogo" << std::endl;
         stan.iniciarMovimientoAutomatico();
@@ -152,10 +152,9 @@ void PrimerMapa::update(sf::RenderWindow &window)
 
     if (stan.dialogoCompletado())
     {
-        cuchillo.recolectado();
+        estadoDelJuego.modificarEstadosItems("cuchillo");
     }
 
-    std::cout << stan.haDesaparecido() << std::endl;
 }
 
 
@@ -165,23 +164,23 @@ void PrimerMapa::draw(sf::RenderWindow &window)
 
     window.setView(camera);
     window.draw(imagen);
-    if (!stan.haDesaparecido())
+    if (!estadoDelJuego.getEstadoPersonajes("stan"))
     {
         window.draw(stan);
     }
     window.draw(dipper);
     window.draw(imagen2);
 
-    if(wendy.haDesaparecido())
+    if(estadoDelJuego.getEstadoPersonajes("wendy"))
     {
         window.draw(wendy);
     }
-    if(soos.haDesaparecido())
+    if(estadoDelJuego.getEstadoPersonajes("soos"))
     {
         window.draw(soos);
     }
 
-    if(mabbel.haDesaparecido())
+    if(estadoDelJuego.getEstadoPersonajes("mabbel"))
     {
         window.draw(mabbel);
     }

@@ -2,6 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
 #include "gnomo.h"
+#include "estadoDelJuego.h"
 
 class Wendy: public sf::Drawable
 {
@@ -29,8 +30,10 @@ private:
     std::vector<sf::Vector2f> _puntosDeRuta;
     size_t _puntoActual;
     float _velocidadAutomatica;
-    static bool _debeDesaparecer;
+//    static bool _debeDesaparecer;
     float _fotograma;
+
+    estadoDelJuego estadoDelJuego;
 
 
 public:
@@ -50,7 +53,7 @@ public:
 
     // MOVIMIENTOS
     void iniciarMovimientoAutomatico();
-    bool haDesaparecido() const;
+//    bool haDesaparecido() const;
     void actualizarMovimientoAutomatico();
     void setPosition(const sf::Vector2f& position);
     sf::Vector2f getPosition() const;

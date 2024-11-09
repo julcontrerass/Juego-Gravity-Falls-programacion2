@@ -1,4 +1,4 @@
-#include "soos.h"
+#include "../soos.h"
 #include <cmath>
 Soos::Soos()
     : _fotograma(0), _velocidad(4, 4), _direccionMirada(0, 1),
@@ -46,7 +46,6 @@ Soos::Soos()
         " Me voy a la cabaña"
     };
 }
-bool Soos::_debeDesaparecer = false;
 
 void Soos::iniciarMovimientoAutomatico()
 {
@@ -59,12 +58,12 @@ void Soos::iniciarMovimientoAutomatico()
 
 void Soos::actualizarMovimientoAutomatico()
 {
-    if (!_moviendoseAutomaticamente || _debeDesaparecer) return;
+    if (!_moviendoseAutomaticamente || estadoDelJuego.getEstadoPersonajes("soos")) return;
 
     if (_puntoActual >= _puntosDeRuta.size())
     {
-        _debeDesaparecer = true;
-        return;
+        estadoDelJuego.modificarEstadosPersonaje("soos");
+       return;
     }
 
     sf::Vector2f posicionActual = _sprite.getPosition();
@@ -218,4 +217,5 @@ void Soos::iniciarDialogo() {
 sf::Vector2f Soos::getPosition() const {
     return _sprite.getPosition();
 }
+
 

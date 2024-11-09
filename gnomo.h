@@ -3,6 +3,7 @@
 #include <vector>
 #include "colisiones.h"
 #include "disparo.h"
+#include "estadoDelJuego.h"
 
 class Gnomo: public sf::Drawable, public Colisiones
 {
@@ -17,6 +18,7 @@ private:
     sf::Clock _disparoCooldown;
     sf::Time _tiempoEntreDisparos;
     int _vidas;
+    estadoDelJuego estadoDelJuego;
 
 public:
     Gnomo();

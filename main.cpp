@@ -4,6 +4,7 @@
 #include "dipper.h"
 #include "gameOver.h"
 #include "dipper.h"
+#include "estadoDelJuego.h"
 
 int main() {
     sf::RenderWindow window(sf::VideoMode(800, 600), "Juego Gravity Falls");
@@ -12,7 +13,7 @@ int main() {
     Inicio inicio;
     EstadoDeMapas estadoJuego;
     GameOver gameOver;
-    Dipper dipper;
+    estadoDelJuego estadoDelJuego;
     bool isGameOver = false;
 
     while (window.isOpen()) {
@@ -40,7 +41,7 @@ int main() {
                 estadoJuego.inicioJuego(true);
             }
         } else {
-            if (dipper.getVidas() == 0) {
+            if (estadoDelJuego.getVidasDipper() == 0) {
                 isGameOver = true;
             }
 

@@ -1,4 +1,4 @@
-#include "wendy.h"
+#include "../wendy.h"
 #include <cmath>
 
 Wendy::Wendy()
@@ -47,7 +47,7 @@ Wendy::Wendy()
         " Me voy a la cabaña"
     };
 }
-bool Wendy::_debeDesaparecer = false;
+//bool Wendy::_debeDesaparecer = false;
 
 void Wendy::iniciarMovimientoAutomatico()
 {
@@ -60,11 +60,11 @@ void Wendy::iniciarMovimientoAutomatico()
 
 void Wendy::actualizarMovimientoAutomatico()
 {
-    if (!_moviendoseAutomaticamente || _debeDesaparecer) return;
+    if (!_moviendoseAutomaticamente || estadoDelJuego.getEstadoPersonajes("wendy")) return;
 
     if (_puntoActual >= _puntosDeRuta.size())
     {
-        _debeDesaparecer = true;
+        estadoDelJuego.modificarEstadosPersonaje("wendy");
         return;
     }
 
@@ -125,9 +125,9 @@ void Wendy::update()
 
 }
 
-bool Wendy::haDesaparecido() const {
-    return _debeDesaparecer;
-}
+//bool Wendy::haDesaparecido() const {
+//    return _debeDesaparecer;
+//}
 
 void Wendy::draw(sf::RenderTarget& objetivo, sf::RenderStates estados) const
 {
@@ -224,4 +224,5 @@ void Wendy::iniciarDialogo() {
 sf::Vector2f Wendy::getPosition() const {
     return _sprite.getPosition();
 }
+
 

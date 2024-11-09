@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "colisiones.h"
+#include "estadoDelJuego.h"
 class PocionDeVelocidad: public sf::Drawable, public Colisiones
 {
     sf::Sprite _sprite;
@@ -9,6 +10,7 @@ class PocionDeVelocidad: public sf::Drawable, public Colisiones
     static int cantidadPociones;
     static int cantPociones;
     static int decremento;
+    estadoDelJuego estadoDelJuego;
 
 
 public:

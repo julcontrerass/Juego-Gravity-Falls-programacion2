@@ -8,6 +8,7 @@
 #include "cofre.h"
 #include "bebidaDeVida.h"
 #include "linterna.h"
+#include "estadoDelJuego.h"
 
 
 class QuintoMapa
@@ -26,6 +27,7 @@ private:
     BebidaDeVida bebida;
     Linterna linterna;
     sf::Vector2f dipperPos;
+    estadoDelJuego estadoDelJuego;
 
 public:
     QuintoMapa();

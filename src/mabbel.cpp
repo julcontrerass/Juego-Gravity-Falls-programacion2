@@ -60,11 +60,12 @@ void Mabbel::iniciarMovimientoAutomatico()
 
 void Mabbel::actualizarMovimientoAutomatico()
 {
-    if (!_moviendoseAutomaticamente || _debeDesaparecer) return;
+    if (!_moviendoseAutomaticamente || estadoDelJuego.getEstadoPersonajes("mabbel")) return;
 
     if (_puntoActual >= _puntosDeRuta.size())
     {
-        _debeDesaparecer = true;
+        estadoDelJuego.modificarEstadosPersonaje("mabbel");
+
         return;
     }
 
@@ -91,7 +92,7 @@ void Mabbel::actualizarMovimientoAutomatico()
     {
         if (direccion.x > 0)
         {
-            _sprite.setTextureRect({0 + int(_fotograma) * 50, 139, 50, 60});  // Derecha
+            _sprite.setTextureRect({0 + int(_fotograma) * 50, 130, 50, 49});  // Derecha
             _direccionMirada = {1, 0};
         }
         else

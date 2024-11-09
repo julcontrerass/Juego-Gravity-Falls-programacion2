@@ -1,4 +1,4 @@
-#include "sextoMapa.h"
+#include "../sextoMapa.h"
 #include "../tercerMapa.h"
 #include "../SeptimoMapa.h"
 
@@ -122,4 +122,5 @@ void SextoMapa::setPersonajePosition(const sf::Vector2f& position)
 sf::Vector2f SextoMapa::getDipperPosition() const {
     return dipper.getPosition();
 }
+
 

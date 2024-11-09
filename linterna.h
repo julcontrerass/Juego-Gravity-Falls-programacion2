@@ -1,11 +1,13 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "colisiones.h"
+#include "estadoDelJuego.h"
 class Linterna: public sf::Drawable, public Colisiones
 {
     sf::Sprite _sprite;
     sf::Texture _textur;
     static bool agarrado;
+    estadoDelJuego estadoDelJuego;
 
 public:
     Linterna();

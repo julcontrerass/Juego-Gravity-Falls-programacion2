@@ -31,8 +31,9 @@ MapaFinal::MapaFinal()
         throw std::runtime_error("No se pudo cargar la textura del mapa.");
     }
 
-    if (!font1.loadFromFile("./font/numeros.ttf")){
-         throw std::runtime_error("No se pudo cargar la fuente de las vidas");
+    if (!font1.loadFromFile("./font/numeros.ttf"))
+    {
+        throw std::runtime_error("No se pudo cargar la fuente de las vidas");
     }
 
     texVidas.setFont(font1);
@@ -100,7 +101,7 @@ void MapaFinal::update(sf::RenderWindow &window)
                 correctionDipper.y = (zona.top + zona.height) - (newPositionDipper.y - newBoundsDipper.height / 2);
         }
 
-         //Colisiones para Bill
+        //Colisiones para Bill
         if (newBoundsBill.intersects(zona))
         {
             collisionBill = true;
@@ -128,7 +129,7 @@ void MapaFinal::update(sf::RenderWindow &window)
         dipper.setPosition(newPositionDipper);
     }
 
-     //Aplicar correcciones para Bill
+    //Aplicar correcciones para Bill
     if (collisionBill)
     {
         if (std::abs(correctionBill.x) > std::abs(correctionBill.y))
@@ -144,32 +145,36 @@ void MapaFinal::update(sf::RenderWindow &window)
     static bool isInvulnerable = false;
     static const float invulnerabilityDuration = 1.5f;
 
-    if (isInvulnerable && invulnerabilityTimer.getElapsedTime().asSeconds() >= invulnerabilityDuration) {
+    if (isInvulnerable && invulnerabilityTimer.getElapsedTime().asSeconds() >= invulnerabilityDuration)
+    {
         isInvulnerable = false;
     }
 
-    if (bill.estaVivo())
+    if (estadoDelJuego.getVidasEnemigos("bill")>0)
     {
         for (auto& disparo : bill.getDisparos())
         {
             if (disparo.isAlive() && !isInvulnerable && dipper.getBounds().intersects(disparo.getBounds()))
             {
-                dipper.perderVida();
+                estadoDelJuego.modificarVidasDipper(-1);
                 isInvulnerable = true;
                 invulnerabilityTimer.restart();
                 disparo.kill();
                 break;
             }
         }
-         for (auto& disparo : dipper.getDisparos())
+        for (auto& disparo : dipper.getDisparos())
         {
             if (disparo.isAlive() && !isInvulnerable && bill.getBounds().intersects(disparo.getBounds()))
             {
-                bill.recibirDanio();
+                estadoDelJuego.modificarVidasEnemigos("bill",-1);
                 isInvulnerable = true;
                 invulnerabilityTimer.restart();
-                disparo.kill();
-                break;
+                // Añadir esta comprobación aquí
+                if (estadoDelJuego.getVidasEnemigos("bill") == 0)
+                {
+                    bill.iniciarAnimacionMuerte();
+                }
             }
         }
     }
@@ -201,15 +206,20 @@ void MapaFinal::draw(sf::RenderWindow &window)
     sf::String dibujoVidas[5] = {"*","**","***","****","*****"};;
 
 
-    for (int i=0; i<bill.getVidas();i++){
-        if (i+1 == bill.getVidas()){
-                texVidasEnemigo.setString(dibujoVidas[i]);
+    for (int i=0; i<estadoDelJuego.getVidasEnemigos("bill"); i++)
+    {
+        if (i+1 == estadoDelJuego.getVidasEnemigos("bill"))
+        {
+            texVidasEnemigo.setString(dibujoVidas[i]);
         }
     }
-    if(bill.estaVivo()){
-            window.draw(texVidasEnemigo);
+    if(estadoDelJuego.getVidasEnemigos("bill")>0)
+    {
+        window.draw(texVidasEnemigo);
     }
     mochila.draw(window);
+
+
 }
 
 
@@ -219,30 +229,4 @@ void MapaFinal::setPersonajePosition(const sf::Vector2f& position)
     dipper.setPosition(position);
 }
 
-//
-//void MapaFinal::cambiosDeMapa(sf::RenderWindow &window) {
-//    // verificamos si el personaje está en la posición para cambiar al segundo mapa
-//    sf::Vector2f dipperPos = dipper.getPosition();
-//    ///LLAMAMOS AL SEGUNDO MAPA
-//    if (dipperPos.x >= 1300 && dipperPos.x <= 1400 && dipperPos.y >= 900 && dipperPos.y <= 2000)
-//    {
-//        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
-//        {
-//            SegundoMapa segundoMapa;
-//            segundoMapa.setPersonajePosition(sf::Vector2f(1420, 200));
-//            segundoMapa.run(window);
-//            return;
-//        }
-//    }
-//    ///LLAMAMOS AL SEXTO MAPA
-//    if (dipperPos.x >= 1434 && dipperPos.x <= 1492 && dipperPos.y >= 213 && dipperPos.y <= 280)
-//    {
-//        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
-//        {
-//            SextoMapa sextoMapa;
-//            sextoMapa.setPersonajePosition(sf::Vector2f(173, 750));
-//            sextoMapa.run(window);
-//            return;
-//        }
-//    }
-//}
+

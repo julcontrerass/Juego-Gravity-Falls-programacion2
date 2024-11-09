@@ -84,7 +84,7 @@ void OctavoMapa::update(sf::RenderWindow &window)
     cameraCenter.y = std::max(300.f, std::min(cameraCenter.y, static_cast<float>(tex.getSize().y) - 300.f));
     camera.setCenter(cameraCenter);
 
-    if (stan.haDesaparecido())
+    if (estadoDelJuego.getEstadoPersonajes("stan"))
     {
         sf::Vector2f dipperPos = dipper.getPosition();
         sf::Vector2f stanPos = stan.getPosition();
@@ -110,7 +110,7 @@ void OctavoMapa::draw(sf::RenderWindow &window)
     window.draw(imagen);
     window.draw(dipper);
     window.draw(imagen2);
-    if(stan.haDesaparecido())
+    if(estadoDelJuego.getEstadoPersonajes("stan"))
     {
         window.draw(stan);
     }
@@ -127,4 +127,5 @@ sf::Vector2f OctavoMapa::getDipperPosition() const
 {
     return dipper.getPosition();
 }
+
 

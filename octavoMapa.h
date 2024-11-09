@@ -5,6 +5,7 @@
 #include "colisiones.h"
 #include "mochila.h"
 #include "stan.h"
+#include "estadoDelJuego.h"
 
 class OctavoMapa
 {
@@ -16,6 +17,7 @@ private:
     std::vector<sf::FloatRect> zonasBloqueadas;
     Mochila mochila;
     Stan stan;
+    estadoDelJuego estadoDelJuego;
 
 
 public:

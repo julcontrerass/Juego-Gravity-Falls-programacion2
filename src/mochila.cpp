@@ -68,54 +68,49 @@ Mochila::Mochila()
 void Mochila::draw(sf::RenderWindow& window)
 {
     window.draw(background);
-    txtVidas.setString("VIDAS: " + std::to_string(dipper.getVidas()));
+    txtVidas.setString("VIDAS: " + std::to_string(estadoDelJuego.getVidasDipper()));
     window.draw(txtVidas);
     window.draw(txtArmas);
     window.draw(txtBebidas);
     window.draw(txtLibros);
-    if(libro1.estadoDelLibro())
+    if(estadoDelJuego.getEstadoLibros(1))
     {
         window.draw(libro1);
     }
-    if(libro2.estadoDelLibro())
+    if(estadoDelJuego.getEstadoLibros(2))
     {
         window.draw(libro2);
     }
-    if(libro3.estadoDelLibro())
+    if(estadoDelJuego.getEstadoLibros(3))
     {
         window.draw(libro3);
     }
-    if(posionVelocidad.cantidadDePociones() > 0)
+    if(estadoDelJuego.contadorDePociones() > 0)
     {
-        cantPociones.setString( std::to_string(posionVelocidad.cantidadDePociones()));
+        cantPociones.setString( std::to_string(estadoDelJuego.contadorDePociones()));
         window.draw(cantPociones);
         window.draw(posionVelocidad);
     }
-    if(bebidaDeVida.cantidadDeBebidas() > 0)
+    if(estadoDelJuego.contadorDeBebidas() > 0)
     {
-        cantBebidas.setString( std::to_string(bebidaDeVida.cantidadDeBebidas()));
+        cantBebidas.setString( std::to_string(estadoDelJuego.contadorDeBebidas()));
         window.draw(bebidaDeVida);
         window.draw(cantBebidas);
     }
 
-    if(cuchillo.estadoDelCuchillo())
+    if(estadoDelJuego.getEstadosItems("cuchillo"))
     {
         window.draw(cuchillo);
     }
-    if(gancho.estadoDelGancho())
+    if(estadoDelJuego.getEstadosItems("gancho"))
     {
         window.draw(gancho);
     }
-    if(linterna.estadoDeLaLinterna())
+    if(estadoDelJuego.getEstadosItems("linterna"))
     {
         window.draw(linterna);
     }
 }
 
-bool Mochila::tresLibros() const {
-    bool libros = false;
-    if ( libro1.estadoDelLibro() && libro2.estadoDelLibro() && libro3.estadoDelLibro()){
-            libros = true;
-    }
-    return libros;
-}
+
+

@@ -5,6 +5,7 @@
 #include "colisiones.h"
 #include "mochila.h"
 #include "bill.h"
+#include "estadoDelJuego.h"
 
 
 class MapaFinal
@@ -19,6 +20,7 @@ private:
     std::vector<sf::FloatRect> zonasBloqueadas;
     Mochila mochila;
     Bill bill;
+    estadoDelJuego estadoDelJuego;
 
 
 public:

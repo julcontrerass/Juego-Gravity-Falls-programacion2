@@ -3,7 +3,7 @@
 #include <stdexcept>
 #include <cmath>
 
-NovenoMapa::NovenoMapa() : cofre(1)
+NovenoMapa::NovenoMapa() : cofre(2)
 {
     // Inicializamos las zonas bloqueadas (árboles y agua)
     // .push_back(x,y,ancho,altura) sirve para agregar un nuevo dato al final de un vector
@@ -69,7 +69,7 @@ void NovenoMapa::update(sf::RenderWindow &window)
     handleCollisions();
     gideon.update(dipper.getPosition());
 
-    if(cofre.estaAbierto()){
+    if(estadoDelJuego.getEstadoCofres(2)){
         mabbel.update();
     }
 
@@ -160,13 +160,13 @@ void NovenoMapa::update(sf::RenderWindow &window)
         isInvulnerable = false;
     }
 
-    if (gideon.estaVivo())
+    if (estadoDelJuego.getVidasEnemigos("gideon") >0)
     {
         for (auto& disparo : gideon.getDisparos())
         {
             if (disparo.isAlive() && !isInvulnerable && dipper.getBounds().intersects(disparo.getBounds()))
             {
-                dipper.perderVida();
+                estadoDelJuego.modificarVidasDipper(-1);
                 isInvulnerable = true;
                 invulnerabilityTimer.restart();
                 disparo.kill();
@@ -177,7 +177,7 @@ void NovenoMapa::update(sf::RenderWindow &window)
         {
             if (disparo.isAlive() && !isInvulnerable && gideon.getBounds().intersects(disparo.getBounds()))
             {
-                gideon.recibirDanio();
+                estadoDelJuego.modificarVidasEnemigos("gideon", -1);
                 isInvulnerable = true;
                 invulnerabilityTimer.restart();
                 disparo.kill();
@@ -199,7 +199,7 @@ void NovenoMapa::update(sf::RenderWindow &window)
 
     // Verificar si el cofre está abierto para iniciar el movimiento de Wendy
     static bool movimientoMabbelIniciado = false;
-    if (cofre.estaAbierto() && !movimientoMabbelIniciado && !gideon.estaVivo())
+    if (estadoDelJuego.getEstadoCofres(2) && !movimientoMabbelIniciado && estadoDelJuego.getVidasEnemigos("gideon") == 0)
     {
         mabbel.iniciarMovimientoAutomatico();
         movimientoMabbelIniciado = true;
@@ -236,24 +236,24 @@ void NovenoMapa::draw(sf::RenderWindow &window)
     window.draw(imagen);
     window.draw(dipper);
     window.draw(imagen2);
-    if (!mabbel.haDesaparecido())
+    if (!estadoDelJuego.getEstadoPersonajes("mabbel"))
     {
         window.draw(mabbel);
     }
-    if(cofre.estaAbierto())
+    if(estadoDelJuego.getEstadoCofres(2))
     {
-        if (!libro2.estadoDelLibro())
+        if (!estadoDelJuego.getEstadoLibros(2))
         {
             window.draw(libro2);
         }
-        if(!pocion.pocionesRecolectadas(0)){
+        if(!estadoDelJuego.getEstadoPociones(0)){
             window.draw(pocion);
         }
-        if(!linterna.estadoDeLaLinterna()){
+        if(!estadoDelJuego.getEstadosItems("linterna")){
             window.draw(linterna);
         }
     }
-    if (gideon.estaVivo())
+    if (estadoDelJuego.getVidasEnemigos("gideon")>0)
     {
         window.draw(gideon);
     }
@@ -265,13 +265,13 @@ void NovenoMapa::draw(sf::RenderWindow &window)
     sf::String dibujoVidas[5] = {"*","**","***","****","*****"};;
 
 
-    for (int i=0; i<gideon.getVidas();i++){
-        if (i+1 == gideon.getVidas()){
+    for (int i=0; i<estadoDelJuego.getVidasEnemigos("gideon");i++){
+        if (i+1 == estadoDelJuego.getVidasEnemigos("gideon")){
                 texVidasEnemigo.setString(dibujoVidas[i]);
         }
     }
 
-    if(gideon.estaVivo()){
+    if(estadoDelJuego.getVidasEnemigos("gideon")>0){
         window.draw(texVidasEnemigo);
     }
 
@@ -291,7 +291,7 @@ void NovenoMapa::handleCollisions()
 {
     if (dipper.isCollision(cofre))
     {
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::E) && !cofre.estaAbierto())
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::E) && !estadoDelJuego.getEstadoCofres(2))
         {
             cofre.sonidoCofre.play();
             cofre.cambiarTextura();
@@ -300,21 +300,22 @@ void NovenoMapa::handleCollisions()
     }
     if (dipper.isCollision(libro2))
     {
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::E) && cofre.estaAbierto())
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::E) && estadoDelJuego.getEstadoCofres(2))
         {
-            libro2.recolectado();
+            estadoDelJuego.modificarEstadosLibros(2);
         }
     }
     if(dipper.isCollision(pocion)){
-         if (sf::Keyboard::isKeyPressed(sf::Keyboard::E) && cofre.estaAbierto())
+         if (sf::Keyboard::isKeyPressed(sf::Keyboard::E) && estadoDelJuego.getEstadoCofres(2))
         {
-            pocion.recolectado(0);
+            estadoDelJuego.modificarEstadosPociones(0);
         }
     }
     if(dipper.isCollision(linterna)){
-         if (sf::Keyboard::isKeyPressed(sf::Keyboard::E) && cofre.estaAbierto())
+         if (sf::Keyboard::isKeyPressed(sf::Keyboard::E) && estadoDelJuego.getEstadoCofres(2))
         {
-            linterna.recolectado();
+            estadoDelJuego.modificarEstadosItems("linterna");
         }
     }
 }
+

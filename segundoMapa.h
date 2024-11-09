@@ -4,6 +4,7 @@
 #include "dipper.h"
 #include "colisiones.h"
 #include "mochila.h"
+#include "estadoDelJuego.h"
 
 class SegundoMapa
 {
@@ -14,6 +15,7 @@ private:
     Dipper dipper;
     std::vector<sf::FloatRect> zonasBloqueadas;
     Mochila mochila;
+    estadoDelJuego estadoDelJuego;
 
 
 public:

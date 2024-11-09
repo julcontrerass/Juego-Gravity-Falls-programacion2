@@ -50,3 +50,4 @@ int BebidaDeVida::cantidadDeBebidas()const{
 void BebidaDeVida::restaBebidas(){
     decremento++;
 }
+

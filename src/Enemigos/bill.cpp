@@ -147,27 +147,27 @@ sf::FloatRect Bill::getBounds() const
     return _sprite.getGlobalBounds();
 }
 
-void Bill::recibirDanio()
-{
-    if (_vidas > 0)
-    {
-        _vidas--;
-        if (_vidas <= 0)
-        {
-            iniciarAnimacionMuerte();
-        }
-    }
-}
+//void Bill::recibirDanio()
+//{
+//    if (_vidas > 0)
+//    {
+//        _vidas--;
+//        if (_vidas <= 0)
+//        {
+//            iniciarAnimacionMuerte();
+//        }
+//    }
+//}
 
-int Bill::getVidas() const
-{
-    return _vidas;
-}
+//int Bill::getVidas() const
+//{
+//    return _vidas;
+//}
 
-bool Bill::estaVivo() const
-{
-    return _vidas > 0;
-}
+//bool Bill::estaVivo() const
+//{
+//    return _vidas > 0;
+//}
 
 std::vector<Disparo>& Bill::getDisparos()
 {
@@ -186,7 +186,7 @@ sf::Vector2f Bill::getPosition() const
 
 void Bill::iniciarAnimacionMuerte()
 {
-    if (!_muriendo && _vidas == 0)
+    if (!_muriendo)  // Solo verificamos que no esté ya muriendo
     {
         _muriendo = true;
         _frameMuerte = 0;
@@ -197,7 +197,6 @@ void Bill::iniciarAnimacionMuerte()
         _sprite.setTextureRect({134, 147, 67, 79});
     }
 }
-
 void Bill::actualizarAnimacionMuerte()
 {
     if (_muriendo && !_animacionMuerteCompleta)

@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "minotauro.h"
+#include "estadoDelJuego.h"
 
 class Soos: public sf::Drawable
 {
@@ -30,7 +31,7 @@ private:
     float _velocidadAutomatica;
     static bool _debeDesaparecer;
     float _fotograma;
-
+    estadoDelJuego estadoDelJuego;
 
 public:
     Soos();

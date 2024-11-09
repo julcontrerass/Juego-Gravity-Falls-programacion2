@@ -11,6 +11,7 @@
 #include "wendy.h"
 #include "cuchillo.h"
 #include "mabbel.h"
+#include "estadoDelJuego.h"
 
 class PrimerMapa
 {
@@ -31,6 +32,8 @@ private:
     Cuchillo cuchillo;
     bool desaparecioWendy,desaparecioSoos;
     Mabbel mabbel;
+
+    estadoDelJuego estadoDelJuego;
 
 public:
     PrimerMapa();

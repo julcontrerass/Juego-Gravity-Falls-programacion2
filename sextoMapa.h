@@ -4,6 +4,7 @@
 #include "dipper.h"
 #include "colisiones.h"
 #include "mochila.h"
+#include "estadoDelJuego.h"
 
 class SextoMapa
 {
@@ -15,6 +16,7 @@ private:
     std::vector<sf::FloatRect> zonasBloqueadas;
     Mochila mochila;
     sf::View defaultView;
+    estadoDelJuego estadoDelJuego;
 
 
 public:

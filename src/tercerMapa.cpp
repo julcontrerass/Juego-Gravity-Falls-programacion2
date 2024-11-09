@@ -1,4 +1,4 @@
-#include "tercerMapa.h"
+#include "../tercerMapa.h"
 #include <stdexcept>
 #include <cmath>
 #include <iostream>
@@ -81,7 +81,7 @@ void TercerMapa::update(sf::RenderWindow &window)
     gnomo.update(dipper.getPosition());
 
     // Actualizar Wendy si el cofre está abierto
-    if (cofre.estaAbierto()) {
+    if (estadoDelJuego.getEstadoCofres(0)) {
         wendy.update();  // Llamamos al método actualizar de Wendy
     }
 
@@ -164,14 +164,14 @@ void TercerMapa::update(sf::RenderWindow &window)
         isInvulnerable = false;
     }
 
-    if (gnomo.estaVivo())
+    if (estadoDelJuego.getVidasEnemigos("gnomo"))
     {
         for (auto& disparo : gnomo.getDisparos())
         {
             if (disparo.isAlive() && !isInvulnerable && dipper.getBounds().intersects(disparo.getBounds()))
             {
                 golpe.play();
-                dipper.perderVida();
+                estadoDelJuego.modificarVidasDipper(-1);
                 isInvulnerable = true;
                 invulnerabilityTimer.restart();
                 disparo.kill();
@@ -182,7 +182,7 @@ void TercerMapa::update(sf::RenderWindow &window)
         {
             if (disparo.isAlive() && !isInvulnerable && gnomo.getBounds().intersects(disparo.getBounds()))
             {
-                gnomo.recibirDanio();
+                estadoDelJuego.modificarVidasEnemigos("gnomo", -1);
                 isInvulnerable = true;
                 invulnerabilityTimer.restart();
                 disparo.kill();
@@ -200,7 +200,7 @@ void TercerMapa::update(sf::RenderWindow &window)
 
     // Verificar si el cofre está abierto para iniciar el movimiento de Wendy
     static bool movimientoWendyIniciado = false;
-    if (cofre.estaAbierto() && !movimientoWendyIniciado && !gnomo.estaVivo())
+    if (estadoDelJuego.getEstadoCofres(0) && !movimientoWendyIniciado && estadoDelJuego.getVidasEnemigos("gnomo")== 0)
     {
         wendy.iniciarMovimientoAutomatico();
         movimientoWendyIniciado = true;
@@ -234,19 +234,19 @@ void TercerMapa::draw(sf::RenderWindow &window)
     window.setView(camera);
     window.draw(imagen);
     window.draw(dipper);
-     if (!wendy.haDesaparecido())
+     if (!estadoDelJuego.getEstadoPersonajes("wendy"))
     {
         window.draw(wendy);
     }
-    if(cofre.estaAbierto()){
-        if (!libro1.estadoDelLibro()){
+    if(estadoDelJuego.getEstadoCofres(0)){
+        if (!estadoDelJuego.getEstadoLibros(1)){
             window.draw(libro1);
         }
-        if(!bebida.bebidasRecolectadas(0)){
+        if(!estadoDelJuego.getEstadoBebidas(0)){
             window.draw(bebida);
         }
     }
-    if (gnomo.estaVivo())
+    if (estadoDelJuego.getVidasEnemigos("gnomo") > 0)
     {
         window.draw(gnomo);
     }
@@ -256,12 +256,12 @@ void TercerMapa::draw(sf::RenderWindow &window)
     window.draw(texVidas);
     sf::String dibujoVidas[5] = {"*","**","***","****","*****"};
 
-    for (int i=0; i<gnomo.getVidas();i++){
-        if (i+1 == gnomo.getVidas()){
+    for (int i=0; i<estadoDelJuego.getVidasEnemigos("gnomo");i++){
+        if (i+1 == estadoDelJuego.getVidasEnemigos("gnomo")){
             texVidasEnemigo.setString(dibujoVidas[i]);
         }
     }
-    if(gnomo.getVidas()){
+    if(estadoDelJuego.getVidasEnemigos("gnomo") > 0){
         window.draw(texVidasEnemigo);
     }
 
@@ -276,7 +276,7 @@ void TercerMapa::handleCollisions()
 {
     if (dipper.isCollision(cofre))
     {
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::E) && !cofre.estaAbierto())
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::E) && !estadoDelJuego.getEstadoCofres(0))
         {
             cofre.sonidoCofre.play();
             cofre.cambiarTextura();
@@ -284,16 +284,17 @@ void TercerMapa::handleCollisions()
     }
     if (dipper.isCollision(libro1))
     {
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::E) && cofre.estaAbierto())
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::E) && estadoDelJuego.getEstadoCofres(0))
         {
-            libro1.recolectado();
+            estadoDelJuego.modificarEstadosLibros(1);
         }
     }
     if (dipper.isCollision(bebida))
     {
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::E) && cofre.estaAbierto())
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::E) && estadoDelJuego.getEstadoCofres(0))
         {
-            bebida.recolectado(0);
+            estadoDelJuego.modificarEstadosBebidas(0);
+            estadoDelJuego.contadorDeBebidas();
         }
     }
 }
@@ -301,3 +302,4 @@ void TercerMapa::handleCollisions()
 sf::Vector2f TercerMapa::getDipperPosition() const {
     return dipper.getPosition();
 }
+

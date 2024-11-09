@@ -1,7 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "gideon.h"
-
+#include "estadoDelJuego.h"
 class Mabbel: public sf::Drawable
 {
 private:
@@ -31,7 +31,7 @@ private:
     static bool _debeDesaparecer;
     float _fotograma;
 
-
+    estadoDelJuego estadoDelJuego;
 public:
     Mabbel();
     void update();

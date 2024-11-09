@@ -2,6 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include "colisiones.h"
+#include "estadoDelJuego.h"
 
 class Cofre : public sf::Drawable, public Colisiones
 {
@@ -15,6 +16,7 @@ private:
     static const int MAX_COFRES = 10;
     static bool cofresAbiertos[MAX_COFRES];  // Array estático para todos los cofres
 
+    estadoDelJuego estadoDelJuego;
 public:
     Cofre(int numeroCofre = 0);
     void update();

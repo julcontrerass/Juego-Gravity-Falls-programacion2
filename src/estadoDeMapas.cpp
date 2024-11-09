@@ -279,7 +279,7 @@ void EstadoDeMapas::cambiarMapa(sf::RenderWindow &window)
         }
     }
     //mapa final
-    if ( !click && mapaActual == 7 && dipperPosOctavoMapa.x >= 556 && dipperPosOctavoMapa.x <= 724 && dipperPosOctavoMapa.y >= 406 && dipperPosOctavoMapa.y <= 510)
+    if ( estadoDelJuego.getEstadoPersonajes("stan") && !click && mapaActual == 7 && dipperPosOctavoMapa.x >= 556 && dipperPosOctavoMapa.x <= 724 && dipperPosOctavoMapa.y >= 406 && dipperPosOctavoMapa.y <= 510)
     {
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
         {

@@ -1,6 +1,5 @@
 #include "../../libro1.h"
 
-
 Libro1::Libro1()  {
     _textur.loadFromFile("./Imagenes/Items/Libro1.png");
     _sprite.setTexture(_textur);

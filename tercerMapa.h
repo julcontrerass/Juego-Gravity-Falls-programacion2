@@ -10,6 +10,7 @@
 #include "bebidaDeVida.h"
 #include "cuchillo.h"
 #include "gnomo.h"
+#include "estadoDelJuego.h"
 
 
 class TercerMapa
@@ -30,6 +31,7 @@ private:
     BebidaDeVida bebida;
     Gnomo gnomo;
     sf::Clock _relojDialogo;
+    estadoDelJuego estadoDelJuego;
 
 
 public:

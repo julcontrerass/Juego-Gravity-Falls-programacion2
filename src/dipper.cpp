@@ -1,4 +1,4 @@
-#include "dipper.h"
+#include "../dipper.h"
 
 // Constructor de la clase Dipper
 Dipper::Dipper()
@@ -23,8 +23,8 @@ Dipper::Dipper()
     // Centra el origen del sprite en la base del personaje
     _sprite.setOrigin(_sprite.getGlobalBounds().width / 2, _sprite.getGlobalBounds().height);
 }
+//int Dipper::vidas = 5;
 
-int Dipper::vidas = 5;
 
 // Método para actualizar el estado del personaje en cada frame
 void Dipper::update()
@@ -32,6 +32,8 @@ void Dipper::update()
     // Reinicia la velocidad a cero en cada frame
     _velocity = {0, 0};
 
+
+    //El timer lo utilizamos para poder controlar el tiempo en el incremento de velocidad
     if(timer>0){
         timer--;
     }
@@ -40,19 +42,19 @@ void Dipper::update()
         incremento = false;
     }
 
-    if(pocion.cantidadDePociones() > 0){
+    if(estadoDelJuego.contadorDePociones() > 0){
         if (timer == 0 && sf::Keyboard::isKeyPressed(sf::Keyboard::X)){
                 incremento = true;
-                pocion.restaPociones();
+                estadoDelJuego.restarPociones();
                 timer= 400;
         }
     }
 
-    if(bebida.cantidadDeBebidas()>0 && vidas < 5){
+    if(estadoDelJuego.contadorDeBebidas() >0 && estadoDelJuego.getVidasDipper() < 5){
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::Z)){
             sonidoBebida.play();
-            recuperarVidas();
-            bebida.restaBebidas();
+            estadoDelJuego.modificarVidasDipper(1);
+            estadoDelJuego.restarBebidas();
         }
     }
 
@@ -120,7 +122,7 @@ void Dipper::update()
 
     //accion de dispara
     // Disparo con la tecla Space
-    if (cuchillo.estadoDelCuchillo() || gancho.estadoDelGancho() || linterna.estadoDeLaLinterna()){
+    if (estadoDelJuego.getEstadosItems("cuchillo") || estadoDelJuego.getEstadosItems("gancho") || estadoDelJuego.getEstadosItems("linterna")){
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
             disparar();
         }
@@ -176,22 +178,22 @@ void Dipper::setInitialTextureRect(int row)
     _sprite.setTextureRect({50, row * 0, 50, 55});
 }
 
-int Dipper::getVidas() const
-{
-    return vidas;
-}
+//int Dipper::getVidas() const
+//{
+//    return vidas;
+//}
 
-void Dipper::recuperarVidas() {
-    if (Dipper::vidas < 5) {  // Usamos Dipper:: para acceder a la variable estática
-        Dipper::vidas++;      // Incrementamos la variable estática
-    }
-}
+//void Dipper::recuperarVidas() {
+//    if (Dipper::vidas < 5) {  // Usamos Dipper:: para acceder a la variable estática
+//        Dipper::vidas++;      // Incrementamos la variable estática
+//    }
+//}
 
-void Dipper::perderVida() {
-    if (Dipper::vidas > 0) {  // Añadimos una verificación para no tener vidas negativas
-        Dipper::vidas--;      // Decrementamos la variable estática
-    }
-}
+//void Dipper::perderVida() {
+//    if (Dipper::vidas > 0) {  // Añadimos una verificación para no tener vidas negativas
+//        Dipper::vidas--;      // Decrementamos la variable estática
+//    }
+//}
 
 void Dipper::disparar() {
     if (_disparoCooldown.getElapsedTime() >= _tiempoEntreDisparos) {
@@ -214,6 +216,9 @@ void Dipper::cambiarTipoDisparo() {
         _tipoDisparoActual = TipoDisparo::BOLA_AZUL;
     }
 }
+
+
+
 
 
 

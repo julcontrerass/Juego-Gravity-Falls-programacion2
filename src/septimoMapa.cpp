@@ -1,9 +1,9 @@
-#include "septimoMapa.h"
+#include "../septimoMapa.h"
 #include "../sextoMapa.h"
 #include <cmath>
 #include <stdexcept>
 
-SeptimoMapa::SeptimoMapa() : cofre(2)
+SeptimoMapa::SeptimoMapa() : cofre(1)
 {
     // Inicializamos las zonas bloqueadas (árboles y agua)
     // .push_back(x,y,ancho,altura) sirve para agregar un nuevo dato al final de un vector
@@ -60,7 +60,7 @@ void SeptimoMapa::update(sf::RenderWindow &window)
     minotauro.update(dipper.getPosition());
 
 
-    if (cofre.estaAbierto()){
+    if (estadoDelJuego.getEstadoCofres(1)){
         soos.update();
     }
 
@@ -150,13 +150,13 @@ void SeptimoMapa::update(sf::RenderWindow &window)
         isInvulnerable = false;
     }
 
-    if (minotauro.estaVivo())
+    if (estadoDelJuego.getVidasEnemigos("minotauro") > 0)
     {
         for (auto& disparo : minotauro.getDisparos())
         {
             if (disparo.isAlive() && !isInvulnerable && dipper.getBounds().intersects(disparo.getBounds()))
             {
-                dipper.perderVida();
+                estadoDelJuego.modificarVidasDipper(-1);
                 isInvulnerable = true;
                 invulnerabilityTimer.restart();
                 disparo.kill();
@@ -167,7 +167,7 @@ void SeptimoMapa::update(sf::RenderWindow &window)
         {
             if (disparo.isAlive() && !isInvulnerable && minotauro.getBounds().intersects(disparo.getBounds()))
             {
-                minotauro.recibirDanio();
+                estadoDelJuego.modificarVidasEnemigos("minotauro", -1);
                 isInvulnerable = true;
                 invulnerabilityTimer.restart();
                 disparo.kill();
@@ -187,10 +187,11 @@ void SeptimoMapa::update(sf::RenderWindow &window)
 
     // Verificar si el cofre está abierto para iniciar el movimiento de Soos
     static bool movimientoSoosIniciado = false;
-    if (cofre.estaAbierto() && !movimientoSoosIniciado && !minotauro.estaVivo())
+    if (estadoDelJuego.getEstadoCofres(1) && !movimientoSoosIniciado && estadoDelJuego.getVidasEnemigos("minotauro")== 0)
     {
         soos.iniciarMovimientoAutomatico();
         movimientoSoosIniciado = true;
+
     }
 
     //dialogo
@@ -226,19 +227,19 @@ void SeptimoMapa::draw(sf::RenderWindow &window)
     window.draw(imagen);
     window.draw(dipper);
     window.draw(cofre);
-    if (!soos.haDesaparecido())
+    if (!estadoDelJuego.getEstadoPersonajes("soos"))
     {
        window.draw(soos);
     }
-    if(cofre.estaAbierto()){
-        if (!libro3.estadoDelLibro()){
+    if(estadoDelJuego.getEstadoCofres(1)){
+        if (!estadoDelJuego.getEstadoLibros(3)){
             window.draw(libro3);
         }
-        if(!gancho.estadoDelGancho()){
+        if(!estadoDelJuego.getEstadosItems("gancho")){
             window.draw(gancho);
         }
     }
-    if (minotauro.estaVivo())
+    if (estadoDelJuego.getVidasEnemigos("minotauro") > 0)
     {
         window.draw(minotauro);
     }
@@ -251,12 +252,12 @@ void SeptimoMapa::draw(sf::RenderWindow &window)
     sf::String dibujoVidas[5] = {"*","**","***","****","*****"};;
 
 
-    for (int i=0; i<minotauro.getVidas();i++){
-        if (i+1 == minotauro.getVidas()){
+    for (int i=0; i<estadoDelJuego.getVidasEnemigos("minotauro");i++){
+        if (i+1 == estadoDelJuego.getVidasEnemigos("minotauro")){
                 texVidasEnemigo.setString(dibujoVidas[i]);
         }
     }
-    if(minotauro.estaVivo()){
+    if(estadoDelJuego.getVidasEnemigos("minotauro") > 0){
         window.draw(texVidasEnemigo);
     }
 
@@ -276,7 +277,7 @@ void SeptimoMapa::handleCollisions()
 {
     if (dipper.isCollision(cofre))
     {
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::E) && !cofre.estaAbierto())
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::E) && !estadoDelJuego.getEstadoCofres(1))
         {
             cofre.sonidoCofre.play();
             cofre.cambiarTextura();
@@ -285,16 +286,16 @@ void SeptimoMapa::handleCollisions()
     }
     if (dipper.isCollision(libro3))
     {
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::E) && cofre.estaAbierto())
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::E) && estadoDelJuego.getEstadoCofres(1))
         {
-            libro3.recolectado();
+            estadoDelJuego.modificarEstadosLibros(3);
         }
     }
     if (dipper.isCollision(gancho))
     {
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::E) && cofre.estaAbierto())
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::E) && estadoDelJuego.getEstadoCofres(1))
         {
-            gancho.recolectado();
+            estadoDelJuego.modificarEstadosItems("gancho");
         }
     }
 }

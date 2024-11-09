@@ -1,4 +1,4 @@
-#include "stan.h"
+#include "../stan.h"
 #include <iostream>
 #include <cmath>
 
@@ -8,7 +8,10 @@ Stan::Stan()
       _dialogoCompletado(false), _tiempoDialogo(0),
       _dialogoPermanentementeCompletado(false),
       _moviendoseAutomaticamente(false), _puntoActual(0),
-      _velocidadAutomatica(2.0f), _fotograma(0), _segundoDialogoCompletado(false)
+      _velocidadAutomatica(2.0f), _fotograma(0),
+      _segundoDialogoCompletado(false),
+      _primerDialogoCompletado(false),
+      _dialogoActualmenteActivo(false)
 {
     // Carga la textura del personaje
     if (!_texture.loadFromFile("./Imagenes/Personajes/stan.png"))
@@ -73,8 +76,8 @@ Stan::Stan()
 
 void Stan::actualizarPosicionDialogo()
 {
-    const std::vector<std::string>& dialogosActuales = haDesaparecido() ? _dialogos3 :
-                                                      mochila.tresLibros() ? _dialogos2 :
+    const std::vector<std::string>& dialogosActuales = estadoDelJuego.getEstadoPersonajes("stan") ? _dialogos3 :
+                                                      estadoDelJuego.tresLibros() ? _dialogos2 :
                                                       _dialogos;
 
     if (_mostrarDialogo && _dialogoActual < static_cast<int>(dialogosActuales.size()))
@@ -97,7 +100,7 @@ void Stan::actualizarPosicionDialogo()
     }
 }
 
-bool Stan::_debeDesaparecer = false;
+//bool Stan::_debeDesaparecer = false;
 
 
 void Stan::actualizarDialogo(float deltaTime)
@@ -111,21 +114,21 @@ void Stan::actualizarDialogo(float deltaTime)
         _tiempoDialogo = 0;
         _dialogoActual++;
 
-        const std::vector<std::string>& dialogosActuales = haDesaparecido() ? _dialogos3 :
-                                                          mochila.tresLibros() ? _dialogos2 :
-                                                          _dialogos;
+        const std::vector<std::string>& dialogosActuales =
+            estadoDelJuego.getEstadoPersonajes("stan") ? _dialogos3 :
+            estadoDelJuego.tresLibros() ? _dialogos2 :
+            _dialogos;
 
         if (_dialogoActual >= static_cast<int>(dialogosActuales.size()))
         {
             _mostrarDialogo = false;
             _dialogoCompletado = true;
+            _dialogoActualmenteActivo = false;
 
-            // Si estamos completando el segundo diálogo (cuando tiene los tres libros)
-            if (!haDesaparecido() && mochila.tresLibros()) {
+            if (!estadoDelJuego.getEstadoPersonajes("stan") && estadoDelJuego.tresLibros()) {
                 _segundoDialogoCompletado = true;
-            }
-            // Si estamos completando el primer diálogo
-            else if (!haDesaparecido() && !mochila.tresLibros()) {
+            } else if (!estadoDelJuego.getEstadoPersonajes("stan") && !estadoDelJuego.tresLibros()) {
+                _primerDialogoCompletado = true;
                 _dialogoPermanentementeCompletado = true;
             }
         }
@@ -136,36 +139,40 @@ void Stan::actualizarDialogo(float deltaTime)
     }
 }
 
+
 bool Stan::segundoDialogoCompletado() const
 {
     return _segundoDialogoCompletado;
 }
 
 
-bool Stan::haDesaparecido() const
-{
-    return _debeDesaparecer;
-}
+//bool Stan::haDesaparecido() const
+//{
+//    return _debeDesaparecer;
+//}
 
 void Stan::iniciarDialogo()
 {
+    // Si ya hay un diálogo activo, no iniciar otro
+    if (_dialogoActualmenteActivo) return;
+
     bool puedeIniciar = false;
 
-    if (haDesaparecido()) {
-        // Siempre puede iniciar el diálogo 3 en el octavo mapa
+    if (estadoDelJuego.getEstadoPersonajes("stan")) {
+        // Diálogo 3 en el octavo mapa
+        puedeIniciar = true;
+    } else if (estadoDelJuego.tresLibros() && _primerDialogoCompletado) {
+        // Diálogo 2 cuando tiene los tres libros y completó el diálogo 1
         puedeIniciar = true;
         _dialogoCompletado = false;
-    } else if (mochila.tresLibros() && _dialogoPermanentementeCompletado) {
-        // Puede iniciar el diálogo 2 si tiene los tres libros y completó el diálogo 1
-        puedeIniciar = true;
-        _dialogoCompletado = false;
-    } else if (!_dialogoPermanentementeCompletado) {
-        // Puede iniciar el diálogo 1 si no lo ha completado permanentemente
+    } else if (!_primerDialogoCompletado) {
+        // Primer diálogo
         puedeIniciar = true;
     }
 
     if (puedeIniciar) {
         _mostrarDialogo = true;
+        _dialogoActualmenteActivo = true;
         _dialogoActual = 0;
         _tiempoDialogo = 0;
         actualizarPosicionDialogo();
@@ -176,10 +183,10 @@ void Stan::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
     target.draw(_sprite, states);
 
-    const std::vector<std::string>& dialogosActuales = haDesaparecido() ? _dialogos3 :
-                                                      mochila.tresLibros() ? _dialogos2 :
-                                                      _dialogos;
-
+    const std::vector<std::string>& dialogosActuales =
+        estadoDelJuego.getEstadoPersonajes("stan") ? _dialogos3 :
+        estadoDelJuego.tresLibros() ? _dialogos2 :
+        _dialogos;
     if (_mostrarDialogo && _dialogoActual < static_cast<int>(dialogosActuales.size()))
     {
         target.draw(_burbujaDialogo, states);
@@ -205,7 +212,7 @@ void Stan::setPosition(const sf::Vector2f& position)
 
 void Stan::update()
 {
-    if (_debeDesaparecer) return;
+    if (estadoDelJuego.getEstadoPersonajes("stan")) return;
 
     if (_moviendoseAutomaticamente)
     {
@@ -225,11 +232,11 @@ void Stan::iniciarMovimientoAutomatico()
 
 void Stan::actualizarMovimientoAutomatico()
 {
-    if (!_moviendoseAutomaticamente || _debeDesaparecer) return;
+    if (!_moviendoseAutomaticamente || estadoDelJuego.getEstadoPersonajes("stan")) return;
 
     if (_puntoActual >= _puntosDeRuta.size())
     {
-        _debeDesaparecer = true;
+        estadoDelJuego.modificarEstadosPersonaje("stan");
         return;
     }
 

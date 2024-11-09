@@ -8,6 +8,8 @@
 #include "cuchillo.h"
 #include "gancho.h"
 #include "linterna.h"
+#include "estadoDelJuego.h"
+
 
 class Dipper: public sf::Drawable, public Colisiones
 {
@@ -18,7 +20,7 @@ private:
     sf::Music sonidoBebida;
     float _frame;
     sf::Vector2f _direccionMirada;
-    static int vidas;
+//    static int vidas;
     int timer;
     PocionDeVelocidad pocion;
     bool incremento;
@@ -32,6 +34,8 @@ private:
     Cuchillo cuchillo;
     Linterna linterna;
 
+    estadoDelJuego estadoDelJuego;
+
 public:
     Dipper();
     void update();
@@ -40,9 +44,9 @@ public:
     sf::Vector2f getPosition() const ;
     void setPosition(const sf::Vector2f& position);
     void setInitialTextureRect(int row);
-    int getVidas() const;
-    void recuperarVidas();
-    void perderVida();
+//    int getVidas() const;
+//    void recuperarVidas();
+//    void perderVida();
     void disparar();
     void cambiarTipoDisparo();
     std::vector<Disparo>& getDisparos() { return _disparos; }

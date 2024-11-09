@@ -1,9 +1,9 @@
-#include "quintoMapa.h"
+#include "../quintoMapa.h"
 #include "../novenoMapa.h"
 #include "../cuartoMapa.h"
 #include <stdexcept>
 
-QuintoMapa::QuintoMapa() : cofre(1)
+QuintoMapa::QuintoMapa()
 {
     // Inicializamos las zonas bloqueadas (árboles y agua)
     // .push_back(x,y,ancho,altura) sirve para agregar un nuevo dato al final de un vector
@@ -128,7 +128,7 @@ void QuintoMapa::draw(sf::RenderWindow &window)
     window.setView(camera);
     window.draw(imagen);
     window.draw(dipper);
-    if(!bebida.bebidasRecolectadas(1)){
+    if(!estadoDelJuego.getEstadoBebidas(1)){
             window.draw(bebida);
     }
     window.setView(defaultView);
@@ -180,7 +180,7 @@ void QuintoMapa::handleCollisions()
     {
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::E))
         {
-            bebida.recolectado(1);
+            estadoDelJuego.modificarEstadosBebidas(1);
         }
     }
 }

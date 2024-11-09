@@ -12,6 +12,7 @@
 #include "novenoMapa.h"
 #include "mapaFinal.h"
 #include "dipper.h"
+#include "estadoDelJuego.h"
 
 // Clase que maneja el estado de los mapas en el juego
 class EstadoDeMapas {
@@ -33,6 +34,7 @@ private:
     bool click;
     sf::Music musicaFondo;
     bool iniciado;
+    estadoDelJuego estadoDelJuego;
 
 public:
     EstadoDeMapas();

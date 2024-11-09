@@ -9,6 +9,7 @@
 #include "gancho.h"
 #include "minotauro.h"
 #include "soos.h"
+#include "estadoDelJuego.h"
 
 class SeptimoMapa
 {
@@ -27,6 +28,7 @@ private:
     Minotauro minotauro;
     Soos soos;
     sf::Clock _relojDialogo;
+    estadoDelJuego estadoDelJuego;
 
 
 

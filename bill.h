@@ -3,7 +3,7 @@
 #include <vector>
 #include "colisiones.h"
 #include "disparo.h"
-
+#include "estadoDelJuego.h"
 class Bill: public sf::Drawable, public Colisiones
 {
 private:
@@ -23,6 +23,8 @@ private:
     static const int FRAMES_MUERTE = 3; // Ajusta según los frames en tu nueva imagen
     bool _animacionMuerteCompleta;
     sf::Vector2f _posicionMuerte;
+
+    estadoDelJuego estadoDelJuego;
 
 public:
     Bill();

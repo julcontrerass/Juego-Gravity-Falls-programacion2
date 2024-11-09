@@ -11,6 +11,7 @@
 #include "linterna.h"
 #include "gideon.h"
 #include "mabbel.h"
+#include "estadoDelJuego.h"
 
 class NovenoMapa
 {
@@ -30,6 +31,7 @@ private:
     Gideon gideon;
     Mabbel mabbel;
     sf::Clock _relojDialogo;
+    estadoDelJuego estadoDelJuego;
 
 
 public:

@@ -69,7 +69,7 @@ void Cofre::cambiarTextura()
     if (!_abierto) {
         _sprite.setTexture(_texturRecogido);
         _abierto = true;
-        cofresAbiertos[_numeroCofre] = true;  // Actualizar el estado global
+        estadoDelJuego.modificarEstadosCofres(_numeroCofre);  // Actualizar el estado global
     }
 }
 

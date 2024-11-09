@@ -10,6 +10,7 @@
 #include "libro2.h"
 #include "libro3.h"
 #include "dipper.h"
+#include "estadoDelJuego.h"
 
 
 
@@ -30,11 +31,11 @@ private:
     Libro1 libro1;
     Libro2 libro2;
     Libro3 libro3;
-    Dipper dipper;
+//    Dipper dipper;
+    estadoDelJuego estadoDelJuego;
 
 
 public:
     Mochila();
     void draw(sf::RenderWindow& window);
-    bool tresLibros() const ;
 };

@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 #include "mochila.h"
+#include "estadoDelJuego.h"
 
 class Stan : public sf::Drawable
 {
@@ -32,6 +33,9 @@ private:
     static bool _debeDesaparecer;
     float _fotograma;
     bool _segundoDialogoCompletado;
+    estadoDelJuego estadoDelJuego;
+    bool _primerDialogoCompletado;
+    bool _dialogoActualmenteActivo;
 
 public:
     Stan();

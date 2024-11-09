@@ -5,6 +5,7 @@
 #include "colisiones.h"
 #include "mochila.h"
 #include "pocionDeVelocidad.h"
+#include "estadoDelJuego.h"
 
 class CuartoMapa
 {
@@ -16,6 +17,7 @@ private:
     std::vector<sf::FloatRect> zonasBloqueadas;
     Mochila mochila;
     PocionDeVelocidad pocion;
+    estadoDelJuego estadoDelJuego;
 public:
     CuartoMapa();
     void update(sf::RenderWindow &window);

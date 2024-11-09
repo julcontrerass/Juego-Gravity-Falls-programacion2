@@ -109,7 +109,7 @@ void CuartoMapa::draw(sf::RenderWindow &window)
     window.draw(imagen);
     window.draw(dipper);
 
-    if(!pocion.pocionesRecolectadas(1)){
+    if(!estadoDelJuego.getEstadoPociones(1)){
         window.draw(pocion);
     }
 
@@ -132,7 +132,7 @@ void CuartoMapa::handleCollisions()
     {
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::E))
         {
-            pocion.recolectado(1);
+            estadoDelJuego.modificarEstadosPociones(1);
         }
     }
 }
