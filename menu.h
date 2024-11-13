@@ -3,6 +3,7 @@
 #include <SFML/Audio.hpp>
 #include "primerMapa.h"
 #include "menuControles.h"
+#include "continuarPartida.h"
 
 class menuInicio {
 private:
@@ -17,16 +18,33 @@ private:
     sf::Keyboard::Key lastKeyPress;
     sf::Music* musicaFondoRef;
     PrimerMapa primerMapa;
-    bool gameStarted;
     MenuControles menuControles;
     sf::Texture texJuli, texLiz, texJuani;
     sf::CircleShape imagenJuli, imagenLiz, imagenJuani;
+    ContinuarPartida menuContinuar;
+
+    // Nuevas variables para el ingreso de nombre
+    bool ingresandoNombre;
+    std::string nombreJugador;
+    sf::Text textoSolicitudNombre;
+    sf::Text textoNombreActual;
+    sf::RectangleShape cajaEntrada;
+
+    estadoDelJuego estadoDelJuego;
+    bool seleccionoNuevaPartida = false;
+
+
 
 public:
     menuInicio(sf::Music& musicaFondo);
     void draw(sf::RenderWindow& window);
-    void movimiento();
-    bool IniciarJuego(sf::RenderWindow& window); // Cambiar a bool
+    bool IniciarJuego(sf::RenderWindow& window);
     void VinculoLinks(sf::RenderWindow& window);
-    bool hasGameStarted() const { return gameStarted; } // Nuevo método
+    bool hasGameStarted() const { return gameStarted; }
+    void manejarEntradaNombre(sf::Event evento);
+    const std::string& getNombreJugador() const { return nombreJugador; }
+    static bool gameStarted;
+    int getSelectedOption() const {return Opciones;}
+    bool seleccionoContinuar = false;
+    void movimiento();
 };

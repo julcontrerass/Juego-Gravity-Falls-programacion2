@@ -24,7 +24,7 @@ Bill::Bill()
     }
 
     _sprite.setTexture(_textur);
-    _sprite.setTextureRect({53, 0, 50, 70}); // Ajusta estos valores según el tamaño de tu sprite
+    _sprite.setTextureRect({53, 0, 50, 70}); // Ajusta estos valores segÂ·n el tamaÂ±o de tu sprite
     _sprite.setOrigin(_sprite.getGlobalBounds().width / 2, _sprite.getGlobalBounds().height);
 }
 
@@ -62,10 +62,10 @@ void Bill::update(const sf::Vector2f& personajePos)
         _velocity = direccion * 2.0f;
         _direccionMirada = direccion;
 
-        // Actualiza la animación según la dirección
+        // Actualiza la animaciâ‰¤n segÂ·n la direcciâ‰¤n
         _frame += 0.2f;
 
-        // Actualiza el rectángulo de textura según la dirección del movimiento
+        // Actualiza el rectÃŸngulo de textura segÂ·n la direcciâ‰¤n del movimiento
         if (std::abs(_direccionMirada.x) > std::abs(_direccionMirada.y))
         {
             if (_direccionMirada.x > 0)
@@ -147,28 +147,6 @@ sf::FloatRect Bill::getBounds() const
     return _sprite.getGlobalBounds();
 }
 
-//void Bill::recibirDanio()
-//{
-//    if (_vidas > 0)
-//    {
-//        _vidas--;
-//        if (_vidas <= 0)
-//        {
-//            iniciarAnimacionMuerte();
-//        }
-//    }
-//}
-
-//int Bill::getVidas() const
-//{
-//    return _vidas;
-//}
-
-//bool Bill::estaVivo() const
-//{
-//    return _vidas > 0;
-//}
-
 std::vector<Disparo>& Bill::getDisparos()
 {
     return _balas;
@@ -186,7 +164,7 @@ sf::Vector2f Bill::getPosition() const
 
 void Bill::iniciarAnimacionMuerte()
 {
-    if (!_muriendo)  // Solo verificamos que no esté ya muriendo
+    if (!_muriendo)  // Solo verificamos que no estÎ˜ ya muriendo
     {
         _muriendo = true;
         _frameMuerte = 0;
@@ -201,7 +179,7 @@ void Bill::actualizarAnimacionMuerte()
 {
     if (_muriendo && !_animacionMuerteCompleta)
     {
-        _frameMuerte += 0.1f; // Velocidad de la animación
+        _frameMuerte += 0.1f; // Velocidad de la animaciâ‰¤n
 
         if (_frameMuerte >= FRAMES_MUERTE)
         {
@@ -209,13 +187,17 @@ void Bill::actualizarAnimacionMuerte()
             return;
         }
 
-        // Actualiza el frame de la animación de muerte
+        // Actualiza el frame de la animaciâ‰¤n de muerte
         _sprite.setTextureRect({int(_frameMuerte) / 134, 147, 67, 79});
         _sprite.setPosition(_posicionMuerte);
     }
     if (_animacionMuerteCompleta){
         _sprite.setTextureRect({0, 0, 67, 79});
     }
+}
+
+bool Bill::getEstadoAnimacion(){
+    return _animacionMuerteCompleta;
 }
 
 bool Bill::estaAnimacionMuerteCompleta() const

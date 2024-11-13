@@ -1,5 +1,10 @@
 #pragma once
 #include <iostream>
+#include <fstream>
+#include <vector>
+
+
+
 
 class estadoDelJuego{
 
@@ -36,6 +41,10 @@ private:
     static int decrementoPociones;
 
     static bool muerto;
+    static std::string jugadorActual;
+//    EstadoDeMapas estadoDeMapas;
+
+    static int mapaActual;
 
 
 
@@ -60,14 +69,21 @@ public:
     int contadorDeBebidas();
     void modificarVidasEnemigos (std::string enemigo, int vida);
     int getVidasEnemigos(std::string enemigos);
-    int getCantidadPociones();
     int getCantidadBebidas();
+    int getCantidadPociones();
     void restarBebidas();
     void restarPociones();
     bool tresLibros() const;
     bool estaVivo(std::string nombre);
-
-
+    void guardarPartida();
+    void cargarPartida(std::vector<std::string>& nombresGuardados);
+    static void setJugadorActual(const std::string& nombre);
+    static std::string getJugadorActual() {return jugadorActual;}
+    void cargarPartida(const std::string& nombreJugador);
+    void nuevaPartida();
+    void borrarPartida(const std::string& nombrePartida);
+    void modificarMapa(int mapa);
+    int getMapaActual (){return mapaActual;}
 
 
 };

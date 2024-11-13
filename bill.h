@@ -9,7 +9,7 @@ class Bill: public sf::Drawable, public Colisiones
 private:
     sf::Sprite _sprite;
     sf::Texture _textur;
-    sf::Texture _texturMuerte;  // Nueva textura para la animación de muerte
+    sf::Texture _texturMuerte;  // Nueva textura para la animaciâ‰¤n de muerte
     sf::Vector2f _velocity;
     float _frame;
     sf::Vector2f _direccionMirada;
@@ -20,8 +20,7 @@ private:
     int _vidas;
     bool _muriendo;
     float _frameMuerte;
-    static const int FRAMES_MUERTE = 3; // Ajusta según los frames en tu nueva imagen
-    bool _animacionMuerteCompleta;
+    static const int FRAMES_MUERTE = 3; // Ajusta segÂ·n los frames en tu nueva imagen
     sf::Vector2f _posicionMuerte;
 
     estadoDelJuego estadoDelJuego;
@@ -42,4 +41,8 @@ public:
     void setInitialTextureRect(int row);
     void iniciarAnimacionMuerte();
     void actualizarAnimacionMuerte();
+    bool getEstadoAnimacion();
+    bool getAnimacionCompleta();
+    bool _animacionMuerteCompleta;
+
 };

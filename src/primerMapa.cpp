@@ -66,7 +66,6 @@ void PrimerMapa::update(sf::RenderWindow &window)
 {
     dipper.update();
     stan.update();
-    std::cout << estadoDelJuego.tresLibros() << std::endl;
     sf::Vector2f oldPosition = dipper.getPosition();
     sf::Vector2f newPosition = dipper.getPosition();
     sf::FloatRect newBounds = dipper.getBounds();
@@ -154,6 +153,19 @@ void PrimerMapa::update(sf::RenderWindow &window)
     {
         estadoDelJuego.modificarEstadosItems("cuchillo");
     }
+
+
+//    if (sf::Keyboard::isKeyPressed(sf::Keyboard::E)){
+//        estadoDelJuego.guardarPartida();
+//    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::E)) {
+            // Verificar que tengamos un nombre de jugador antes de guardar
+            if (!estadoDelJuego.getJugadorActual().empty()) {
+                estadoDelJuego.guardarPartida();
+            } else {
+                std::cout << "No se puede guardar: nombre de jugador no establecido" << std::endl;
+            }
+        }
 
 }
 

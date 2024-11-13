@@ -28,7 +28,6 @@ private:
     NovenoMapa novenoMapa;
     MapaFinal mapaFinal;
     Dipper dipper;
-    int mapaActual;
     bool active;
     int timer;
     bool click;
@@ -43,4 +42,7 @@ public:
     void handleEvent(sf::Event& event, sf::RenderWindow& window);
     void inicioJuego(bool iniciado);
     void cambiarMapa(sf::RenderWindow& window);
+    bool volverAlMenu;
+
+
 };

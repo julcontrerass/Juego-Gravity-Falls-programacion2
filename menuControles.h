@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 
+
 class MenuControles {
 private:
     sf::Font font;

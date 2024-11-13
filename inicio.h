@@ -1,29 +1,23 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
-#include "menu.h"
 
 class Inicio {
 private:
     sf::Texture backgroundTexture;
     sf::Sprite backgroundSprite;
-    sf::Font font;
     sf::Text botonStart;
-    bool textoVisible;
-    sf::Clock tiempo;
-    menuInicio menu;
-    bool incioMenu;
+    sf::Font font;
     sf::FloatRect limitesDelTexto;
-    sf::Music musicaFondo;
+    sf::Clock tiempo;
+    bool textoVisible;
     bool startClicked;
-    bool musicStarted;
-    static constexpr float BLINK_INTERVAL = 0.5f;
+    const float BLINK_INTERVAL = 0.5f;
 
 public:
     Inicio();
     void handleEvent(sf::Event& event, sf::RenderWindow& window);
     void update(sf::RenderWindow& window);
     void draw(sf::RenderWindow& window);
-    void run(sf::RenderWindow& window);
-    bool shouldStartGame() const { return incioMenu && menu.hasGameStarted();};
+    bool shouldStartGame() const { return startClicked; }
 };

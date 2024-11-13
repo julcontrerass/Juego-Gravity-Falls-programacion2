@@ -145,12 +145,6 @@ bool Stan::segundoDialogoCompletado() const
     return _segundoDialogoCompletado;
 }
 
-
-//bool Stan::haDesaparecido() const
-//{
-//    return _debeDesaparecer;
-//}
-
 void Stan::iniciarDialogo()
 {
     // Si ya hay un diálogo activo, no iniciar otro

@@ -16,6 +16,7 @@
 					<Add directory="h" />
 					<Add directory="../JuegoUtn" />
 					<Add directory="./" />
+					<Add directory="../Juego-Gravity-Falls-programacion2" />
 				</Compiler>
 				<Linker>
 					<Add library="sfml-graphics-d" />
@@ -34,6 +35,7 @@
 					<Add directory="h" />
 					<Add directory="../JuegoUtn" />
 					<Add directory="./" />
+					<Add directory="../Juego-Gravity-Falls-programacion2" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -56,6 +58,7 @@
 		<Unit filename="bill.h" />
 		<Unit filename="cofre.h" />
 		<Unit filename="colisiones.h" />
+		<Unit filename="continuarPartida.h" />
 		<Unit filename="cuartoMapa.h" />
 		<Unit filename="cuchillo.h" />
 		<Unit filename="dipper.h" />
@@ -80,6 +83,7 @@
 		<Unit filename="mochila.h" />
 		<Unit filename="novenoMapa.h" />
 		<Unit filename="octavoMapa.h" />
+		<Unit filename="pantallaGanador.h" />
 		<Unit filename="pocionDeVelocidad.h" />
 		<Unit filename="primerMapa.h" />
 		<Unit filename="quintoMapa.h" />
@@ -92,6 +96,7 @@
 		<Unit filename="src/Enemigos/gnomo.cpp" />
 		<Unit filename="src/Enemigos/minotauro.cpp" />
 		<Unit filename="src/colisiones.cpp" />
+		<Unit filename="src/continuarPartida.cpp" />
 		<Unit filename="src/cuartoMapa.cpp" />
 		<Unit filename="src/dipper.cpp" />
 		<Unit filename="src/disparo.cpp" />
@@ -115,6 +120,7 @@
 		<Unit filename="src/mochila.cpp" />
 		<Unit filename="src/novenoMapa.cpp" />
 		<Unit filename="src/octavoMapa.cpp" />
+		<Unit filename="src/pantallaGanador.cpp" />
 		<Unit filename="src/primerMapa.cpp" />
 		<Unit filename="src/quintoMapa.cpp" />
 		<Unit filename="src/segundoMapa.cpp" />
