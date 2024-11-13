@@ -46,6 +46,12 @@ menuInicio::menuInicio(sf::Music& musicaFondo) :
     cajaEntrada.setOutlineThickness(2);
     cajaEntrada.setOutlineColor(sf::Color(143, 159, 97));
 
+    salirMenu.setFont(font);
+    salirMenu.setCharacterSize(30);
+    salirMenu.setString("X");
+    salirMenu.setFillColor(sf::Color::Red);
+    salirMenu.setPosition(20, 20);
+
     // Cargar texturas para los círculos
     if (!texJuli.loadFromFile("./Imagenes/Creadores/ImagenJuli.jpg"))
     {
@@ -126,8 +132,27 @@ void menuInicio::draw(sf::RenderWindow& window)
         window.draw(textoSolicitudNombre);
         textoNombreActual.setString(nombreJugador + "_"); // Añadido cursor
         window.draw(textoNombreActual);
+        window.draw(salirMenu);
+
+        static bool clickMouse = false;
+        bool click = sf::Mouse::isButtonPressed(sf::Mouse::Left);
+
+        if (click && !clickMouse)
+        {
+            // Check if the mouse clicked on the "Return to Menu" button
+            sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+            if (salirMenu.getGlobalBounds().contains(mousePos.x, mousePos.y))
+            {
+                ingresandoNombre = false;
+                nombreJugador = "";
+            }
+        }
+        clickMouse = click;
+
         return;
     }
+
+
 
 
     if (menuControles.getIsOpen())
@@ -197,6 +222,8 @@ void menuInicio::draw(sf::RenderWindow& window)
 
     movimiento();
     VinculoLinks(window);
+
+
 }
 
 void menuInicio::manejarEntradaNombre(sf::Event evento)
@@ -232,19 +259,23 @@ void menuInicio::manejarEntradaNombre(sf::Event evento)
         }
     }
 
-    // Permitir cancelar con Escape
-    if (evento.type == sf::Event::KeyPressed && evento.key.code == sf::Keyboard::Escape)
-    {
-        ingresandoNombre = false;
-        nombreJugador = "";
-    }
+
+//    if (evento.type == sf::Event::KeyPressed && evento.key.code == sf::Keyboard::Escape)
+//    {
+//        ingresandoNombre = false;
+//        nombreJugador = "";
+//    }
+
 }
 
-void menuInicio::movimiento() {
+void menuInicio::movimiento()
+{
     if (ingresandoNombre) return;
 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) || sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
-        if (moveClock.getElapsedTime().asMilliseconds() > 200) {
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) || sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+    {
+        if (moveClock.getElapsedTime().asMilliseconds() > 200)
+        {
             menu[Opciones].setFillColor(sf::Color::White);
             menu[Opciones].setStyle(sf::Text::Regular);
             Opciones = (Opciones + 1) % 3;
@@ -253,8 +284,11 @@ void menuInicio::movimiento() {
             sonidoInicio.play();
             moveClock.restart();
         }
-    } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
-        if (moveClock.getElapsedTime().asMilliseconds() > 200) {
+    }
+    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+    {
+        if (moveClock.getElapsedTime().asMilliseconds() > 200)
+        {
             menu[Opciones].setFillColor(sf::Color::White);
             menu[Opciones].setStyle(sf::Text::Regular);
             Opciones = (Opciones - 1 + 3) % 3;

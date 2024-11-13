@@ -1,4 +1,4 @@
-#include "inicio.h"
+#include "../inicio.h"
 
 Inicio::Inicio() :
     textoVisible(true),

@@ -1148,7 +1148,7 @@
 	"segundoMapa.h"
 	"PrimerMapa.h"
 
-1731470045 source:c:\users\xxjul\onedrive\escritorio\juego-gravity-falls-programacion2\main.cpp
+1731502132 source:c:\users\xxjul\onedrive\escritorio\juego-gravity-falls-programacion2\main.cpp
 	<SFML/Graphics.hpp>
 	"inicio.h"
 	"menu.h"
@@ -2111,12 +2111,11 @@
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 
-1731468122 c:\users\xxjul\onedrive\escritorio\juego-gravity-falls-programacion2\menu.h
+1731502460 c:\users\xxjul\onedrive\escritorio\juego-gravity-falls-programacion2\menu.h
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 	"primerMapa.h"
 	"menuControles.h"
-	"continuarPartida.h"
 
 1731468122 c:\users\xxjul\onedrive\escritorio\juego-gravity-falls-programacion2\primermapa.h
 	<SFML/Graphics.hpp>
@@ -2381,8 +2380,8 @@
 1731262467 c:\users\xxjul\onedrive\escritorio\juego-gravity-falls-programacion2\gameover.h
 	<SFML/Graphics.hpp>
 
-1731262467 source:c:\users\xxjul\onedrive\escritorio\juego-gravity-falls-programacion2\src\colisiones.cpp
-	"colisiones.h"
+1731500081 source:c:\users\xxjul\onedrive\escritorio\juego-gravity-falls-programacion2\src\colisiones.cpp
+	"../colisiones.h"
 
 1731262467 source:c:\users\xxjul\onedrive\escritorio\juego-gravity-falls-programacion2\src\cuartomapa.cpp
 	"../cuartoMapa.h"
@@ -2393,8 +2392,8 @@
 1731262467 source:c:\users\xxjul\onedrive\escritorio\juego-gravity-falls-programacion2\src\dipper.cpp
 	"../dipper.h"
 
-1731262467 source:c:\users\xxjul\onedrive\escritorio\juego-gravity-falls-programacion2\src\disparo.cpp
-	"disparo.h"
+1731500081 source:c:\users\xxjul\onedrive\escritorio\juego-gravity-falls-programacion2\src\disparo.cpp
+	"../disparo.h"
 	<cmath>
 	<stdexcept>
 
@@ -2426,8 +2425,8 @@
 1731262467 source:c:\users\xxjul\onedrive\escritorio\juego-gravity-falls-programacion2\src\gameover.cpp
 	"../gameOver.h"
 
-1731356101 source:c:\users\xxjul\onedrive\escritorio\juego-gravity-falls-programacion2\src\inicio.cpp
-	"inicio.h"
+1731500081 source:c:\users\xxjul\onedrive\escritorio\juego-gravity-falls-programacion2\src\inicio.cpp
+	"../inicio.h"
 
 1731262467 source:c:\users\xxjul\onedrive\escritorio\juego-gravity-falls-programacion2\src\items\bebidadevida.cpp
 	"../../bebidaDeVida.h"
@@ -2465,13 +2464,13 @@
 	<stdexcept>
 	<cmath>
 
-1731469001 source:c:\users\xxjul\onedrive\escritorio\juego-gravity-falls-programacion2\src\menu.cpp
+1731503227 source:c:\users\xxjul\onedrive\escritorio\juego-gravity-falls-programacion2\src\menu.cpp
 	"../menu.h"
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 	<string>
 
-1731262467 source:c:\users\xxjul\onedrive\escritorio\juego-gravity-falls-programacion2\src\menucontroles.cpp
+1731502370 source:c:\users\xxjul\onedrive\escritorio\juego-gravity-falls-programacion2\src\menucontroles.cpp
 	"../../menuControles.h"
 
 1731262467 source:c:\users\xxjul\onedrive\escritorio\juego-gravity-falls-programacion2\src\mochila.cpp
@@ -2693,21 +2692,22 @@
 	<fstream>
 	<vector>
 
-1731469965 source:c:\users\xxjul\onedrive\escritorio\juego-gravity-falls-programacion2\src\estadodeljuego.cpp
+1731501003 source:c:\users\xxjul\onedrive\escritorio\juego-gravity-falls-programacion2\src\estadodeljuego.cpp
 	"../estadoDelJuego.h"
 	<vector>
 	<iostream>
 	<sstream>
 
-1731466149 c:\users\xxjul\onedrive\escritorio\juego-gravity-falls-programacion2\continuarpartida.h
+1731502112 c:\users\xxjul\onedrive\escritorio\juego-gravity-falls-programacion2\continuarpartida.h
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 	"estadoDelJuego.h"
+	"estadoDeMapas.h"
+	"menu.h"
 	<vector>
 
-1731467879 source:c:\users\xxjul\onedrive\escritorio\juego-gravity-falls-programacion2\src\continuarpartida.cpp
+1731502112 source:c:\users\xxjul\onedrive\escritorio\juego-gravity-falls-programacion2\src\continuarpartida.cpp
 	"../continuarPartida.h"
-	"../estadoDelJuego.h"
 	"../menu.h"
 	<vector>
 	<iostream>

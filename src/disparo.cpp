@@ -1,4 +1,4 @@
-#include "disparo.h"
+#include "../disparo.h"
 #include <cmath>
 #include <stdexcept>
 

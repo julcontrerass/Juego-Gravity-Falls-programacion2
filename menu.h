@@ -3,7 +3,6 @@
 #include <SFML/Audio.hpp>
 #include "primerMapa.h"
 #include "menuControles.h"
-#include "continuarPartida.h"
 
 class menuInicio {
 private:
@@ -21,16 +20,16 @@ private:
     MenuControles menuControles;
     sf::Texture texJuli, texLiz, texJuani;
     sf::CircleShape imagenJuli, imagenLiz, imagenJuani;
-    ContinuarPartida menuContinuar;
 
     // Nuevas variables para el ingreso de nombre
     bool ingresandoNombre;
     std::string nombreJugador;
     sf::Text textoSolicitudNombre;
-    sf::Text textoNombreActual;
+    sf::Text textoNombreActual,salirMenu;
     sf::RectangleShape cajaEntrada;
 
     estadoDelJuego estadoDelJuego;
+
     bool seleccionoNuevaPartida = false;
 
 

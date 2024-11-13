@@ -170,6 +170,7 @@ void MapaFinal::update(sf::RenderWindow &window)
                 estadoDelJuego.modificarVidasEnemigos("bill",-1);
                 isInvulnerable = true;
                 invulnerabilityTimer.restart();
+                disparo.kill();
                 // Añadir esta comprobación aquí
                 if (estadoDelJuego.getVidasEnemigos("bill") == 0)
                 {

@@ -79,6 +79,11 @@ int main()
 
             case EstadoJuego::SELECCION_PARTIDA:
                 continuarPartida.draw(window);
+                if(continuarPartida.volverMenu()){
+                    continuarPartida.modificarMenu();
+                    estadoActual = EstadoJuego::MENU;
+
+                }
                 if (continuarPartida.debeIniciarJuego())
                 {
                     estadoActual = EstadoJuego::JUGAR;

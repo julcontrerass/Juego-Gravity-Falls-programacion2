@@ -11,7 +11,7 @@ MenuControles::MenuControles() : isOpen(false) {
     exitButton.setString("X");
     exitButton.setCharacterSize(30);
     exitButton.setPosition(15, 20);
-    exitButton.setFillColor(sf::Color::Black);
+    exitButton.setFillColor(sf::Color::Red);
 
     // Cargar la imagen de fondo
     if (!backgroundTexture.loadFromFile("./Imagenes/Controles.png")) {

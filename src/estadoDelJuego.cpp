@@ -7,7 +7,7 @@ estadoDelJuego::estadoDelJuego()
 
 }
 int estadoDelJuego::vidasDipper = 5;
-bool estadoDelJuego::tipoPartida=false;   //siempre arranca en nueva partida
+bool estadoDelJuego::tipoPartida=false;
 bool estadoDelJuego::cofresAbiertos[3]= {false};
 bool estadoDelJuego::agarrado1=false;
 bool estadoDelJuego::agarrado2=false;
