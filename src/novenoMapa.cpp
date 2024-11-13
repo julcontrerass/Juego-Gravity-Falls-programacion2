@@ -177,7 +177,7 @@ void NovenoMapa::update(sf::RenderWindow &window)
         {
             if (disparo.isAlive() && !isInvulnerable && gideon.getBounds().intersects(disparo.getBounds()))
             {
-                estadoDelJuego.modificarVidasEnemigos("gideon", -1);
+                estadoDelJuego.modificarVidasEnemigos("gideon");
                 isInvulnerable = true;
                 invulnerabilityTimer.restart();
                 disparo.kill();

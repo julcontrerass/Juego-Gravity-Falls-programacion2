@@ -182,7 +182,7 @@ void TercerMapa::update(sf::RenderWindow &window)
         {
             if (disparo.isAlive() && !isInvulnerable && gnomo.getBounds().intersects(disparo.getBounds()))
             {
-                estadoDelJuego.modificarVidasEnemigos("gnomo", -1);
+                estadoDelJuego.modificarVidasEnemigos("gnomo");
                 isInvulnerable = true;
                 invulnerabilityTimer.restart();
                 disparo.kill();

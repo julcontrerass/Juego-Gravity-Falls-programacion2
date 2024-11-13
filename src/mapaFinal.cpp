@@ -167,7 +167,7 @@ void MapaFinal::update(sf::RenderWindow &window)
         {
             if (disparo.isAlive() && !isInvulnerable && bill.getBounds().intersects(disparo.getBounds()))
             {
-                estadoDelJuego.modificarVidasEnemigos("bill",-1);
+                estadoDelJuego.modificarVidasEnemigos("bill");
                 isInvulnerable = true;
                 invulnerabilityTimer.restart();
                 disparo.kill();

@@ -9,8 +9,10 @@
 class SegundoMapa
 {
 private:
-    sf::Sprite imagen,imagen2;
-    sf::Texture tex,tex2;
+    sf::Sprite imagen,imagen2,mcgucket;
+    sf::Texture tex,tex2,tex3;
+    sf::Font font;
+    sf::Text texto;
     sf::View camera;
     Dipper dipper;
     std::vector<sf::FloatRect> zonasBloqueadas;

@@ -48,9 +48,26 @@ SegundoMapa::SegundoMapa()
     {
         throw std::runtime_error("No se pudo cargar la textura de los items del mapa.");
     }
+    // Cargar la textura de los items sobre el personaje
+    if (!tex3.loadFromFile("./Imagenes/Personajes/mcgucket.png"))
+    {
+        throw std::runtime_error("No se pudo cargar la textura de mcgucket.");
+    }
+    if (!font.loadFromFile("./font/numeros.ttf"))
+    {
+        throw std::runtime_error("No se pudo cargar la fuente del segundo mapa");
+    }
 
     imagen.setTexture(tex);
     imagen2.setTexture(tex2);
+    mcgucket.setTexture(tex3);
+    texto.setFont(font);
+    texto.setString("'E' Guardar");
+    texto.setCharacterSize(20);
+    texto.setFillColor(sf::Color::White);
+    texto.setPosition(870, 780);
+
+    mcgucket.setPosition(900,800);
     // Crear una vista que actúa como cámara
     camera.setSize(sf::Vector2f(800, 600));
 }
@@ -109,8 +126,18 @@ void SegundoMapa::update(sf::RenderWindow &window)
     cameraCenter.y = std::max(300.f, std::min(cameraCenter.y, static_cast<float>(tex.getSize().y) - 300.f));
     camera.setCenter(cameraCenter);
 
-//    cambiosDeMapa(window);
-
+    // Comprobar si el personaje está cerca de mcgucket y presiona 'E'
+    if (std::abs(dipper.getPosition().x - mcgucket.getPosition().x) < 100.f &&
+        std::abs(dipper.getPosition().y - mcgucket.getPosition().y) < 100.f &&
+        sf::Keyboard::isKeyPressed(sf::Keyboard::E))
+    {
+       // Verificar que tengamos un nombre de jugador antes de guardar
+            if (!estadoDelJuego.getJugadorActual().empty()) {
+                estadoDelJuego.guardarPartida();
+            } else {
+                std::cout << "No se puede guardar: nombre de jugador no establecido" << std::endl;
+            }
+    }
 }
 
 
@@ -124,6 +151,8 @@ void SegundoMapa::draw(sf::RenderWindow &window)
     window.draw(imagen);
     window.draw(dipper);
     window.draw(imagen2);
+    window.draw(mcgucket);
+    window.draw(texto);
 
 
     window.setView(defaultView);

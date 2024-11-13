@@ -167,7 +167,7 @@ void SeptimoMapa::update(sf::RenderWindow &window)
         {
             if (disparo.isAlive() && !isInvulnerable && minotauro.getBounds().intersects(disparo.getBounds()))
             {
-                estadoDelJuego.modificarVidasEnemigos("minotauro", -1);
+                estadoDelJuego.modificarVidasEnemigos("minotauro");
                 isInvulnerable = true;
                 invulnerabilityTimer.restart();
                 disparo.kill();

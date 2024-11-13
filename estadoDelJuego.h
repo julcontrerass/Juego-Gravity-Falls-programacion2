@@ -67,7 +67,7 @@ public:
     int getVidasDipper();
     int contadorDePociones();
     int contadorDeBebidas();
-    void modificarVidasEnemigos (std::string enemigo, int vida);
+    void modificarVidasEnemigos (std::string enemigo);
     int getVidasEnemigos(std::string enemigos);
     int getCantidadBebidas();
     int getCantidadPociones();

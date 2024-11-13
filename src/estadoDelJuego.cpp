@@ -230,48 +230,32 @@ void estadoDelJuego::restarPociones()
     decrementoPociones++;
 }
 
-void estadoDelJuego::modificarVidasEnemigos(std::string enemigo, int vida)
+void estadoDelJuego::modificarVidasEnemigos(std::string enemigo)
 {
     if(enemigo == "gnomo")
     {
-        if(vidasGnomo < 5 && vida == 1)
-        {
-            vidasGnomo++;
-        }
-        else if(vidasGnomo > 0 && vida == -1)
+        if(vidasGnomo > 0 )
         {
             vidasGnomo--;
         }
     }
     else if(enemigo == "gideon")
     {
-        if(vidasGideon < 5 && vida == 1)
-        {
-            vidasGideon++;
-        }
-        else if(vidasGideon > 0 && vida == -1)
+        if(vidasGideon > 0)
         {
             vidasGideon--;
         }
     }
     else if(enemigo == "minotauro")
     {
-        if(vidasMinotauro < 5 && vida == 1)
-        {
-            vidasMinotauro++;
-        }
-        else if(vidasMinotauro > 0 && vida == -1)
+        if(vidasMinotauro > 0 )
         {
             vidasMinotauro--;
         }
     }
     else if(enemigo == "bill")
     {
-        if(vidasBill < 5 && vida == 1)
-        {
-            vidasBill++;
-        }
-        else if(vidasBill > 0 && vida == -1)
+        if(vidasBill > 0 )
         {
             vidasBill--;
         }
