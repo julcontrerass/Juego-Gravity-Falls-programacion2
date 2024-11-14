@@ -11,7 +11,6 @@ private:
     sf::Vector2f _velocity;
     bool _isAlive;
     int _tipo;
-    // Para cuchillo y gancho
     sf::Sprite _sprite;
     static sf::Texture _texturaGancho;
     static sf::Texture _texturaCuchillo;

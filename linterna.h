@@ -14,7 +14,7 @@ public:
     void update();
     void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
     sf::FloatRect getBounds() const override;
-    void setPosition(const sf::Vector2f& position);  // Nueva función para cambiar la posición
+    void setPosition(const sf::Vector2f& position);
     void recolectado();
     bool estadoDeLaLinterna() const;
 };

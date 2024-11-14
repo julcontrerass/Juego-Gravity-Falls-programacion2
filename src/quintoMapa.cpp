@@ -144,34 +144,7 @@ void QuintoMapa::setPersonajePosition(const sf::Vector2f& position)
 sf::Vector2f QuintoMapa::getDipperPosition() const {
     return dipper.getPosition();
 }
-//void QuintoMapa::cambiosDeMapa(sf::RenderWindow &window)
-//{
-//    // verificamos si el personaje está en la posición para cambiar al segundo mapa
-//    dipperPos = dipper.getPosition();
-//    ///LLAMAMOS AL CUARTO MAPA
-//    if (dipperPos.x >= 330 && dipperPos.x <= 472 && dipperPos.y >= 520 && dipperPos.y <= 600)
-//    {
-//        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
-//        {
-//            CuartoMapa cuartoMapa;
-//            cuartoMapa.setPersonajePosition(sf::Vector2f(1182, 60));
-//            cuartoMapa.run(window);
-//            return;
-//        }
-//    }
-//    // verificamos si el personaje está en la posición para cambiar al segundo mapa
-//    sf::Vector2f dipperPos = dipper.getPosition();
-//    if (dipperPos.x >= 0 && dipperPos.x <= 83 && dipperPos.y >= 300 && dipperPos.y <= 400)
-//    {
-//        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
-//        {
-//            NovenoMapa novenoMapa;
-//            novenoMapa.setPersonajePosition(sf::Vector2f(1125, 195));
-//            novenoMapa.run(window);
-//            return;
-//        }
-//    }
-//}
+
 
 
 void QuintoMapa::handleCollisions()

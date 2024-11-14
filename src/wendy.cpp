@@ -125,9 +125,6 @@ void Wendy::update()
 
 }
 
-//bool Wendy::haDesaparecido() const {
-//    return _debeDesaparecer;
-//}
 
 void Wendy::draw(sf::RenderTarget& objetivo, sf::RenderStates estados) const
 {

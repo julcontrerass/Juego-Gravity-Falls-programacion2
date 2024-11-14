@@ -8,7 +8,6 @@ Libro2::Libro2(){
 bool Libro2::agarrado = false;
 
 void Libro2::update() {
-    // Aquí podrías actualizar el libro si es necesario
 }
 
 sf::FloatRect Libro2::getBounds() const {
@@ -20,7 +19,6 @@ void Libro2::draw(sf::RenderTarget& target, sf::RenderStates states) const {
     target.draw(_sprite, states);
 
 }
-// Método para establecer la posición del item
 void Libro2::setPosition(const sf::Vector2f& position)
 {
     _sprite.setPosition(position);

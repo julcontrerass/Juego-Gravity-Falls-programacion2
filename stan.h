@@ -52,10 +52,6 @@ public:
         return _dialogoCompletado;
     }
     bool dialogoPermanentementeCompletado() const;
-//    void setPermanentementeCompletado(bool completado)
-//    {
-//        _dialogoPermanentementeCompletado = completado;
-//    }
     void actualizarPosicionDialogo();
     bool segundoDialogoCompletado() const;
 

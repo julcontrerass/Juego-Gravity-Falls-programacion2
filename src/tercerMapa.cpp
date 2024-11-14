@@ -77,7 +77,6 @@ void TercerMapa::update(sf::RenderWindow &window)
         wendy.update();  // Llamamos al método actualizar de Wendy
     }
 
-    // Resto del código de update...
     sf::Vector2f oldPositionDipper = dipper.getPosition();
     sf::Vector2f newPositionDipper = dipper.getPosition();
     sf::FloatRect newBoundsDipper = dipper.getBounds();

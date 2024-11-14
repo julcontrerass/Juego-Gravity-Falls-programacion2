@@ -7,7 +7,6 @@ Linterna::Linterna() {
 bool Linterna::agarrado = false;
 
 void Linterna::update() {
-    // Aquí podrías actualizar el libro si es necesario
 }
 
 sf::FloatRect Linterna::getBounds() const {
@@ -19,7 +18,6 @@ void Linterna::draw(sf::RenderTarget& target, sf::RenderStates states) const {
     target.draw(_sprite, states);
 
 }
-// Método para establecer la posición del item
 void Linterna::setPosition(const sf::Vector2f& position)
 {
     _sprite.setPosition(position);

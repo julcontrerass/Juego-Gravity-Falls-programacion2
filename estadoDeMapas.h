@@ -14,7 +14,6 @@
 #include "dipper.h"
 #include "estadoDelJuego.h"
 
-// Clase que maneja el estado de los mapas en el juego
 class EstadoDeMapas {
 private:
     PrimerMapa primerMapa;

@@ -29,7 +29,6 @@ Dipper::Dipper()
 //int Dipper::vidas = 5;
 
 
-// Método para actualizar el estado del personaje en cada frame
 void Dipper::update()
 {
     // Reinicia la velocidad a cero en cada frame

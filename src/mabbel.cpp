@@ -133,8 +133,6 @@ bool Mabbel::haDesaparecido() const {
 void Mabbel::draw(sf::RenderTarget& objetivo, sf::RenderStates estados) const
 {
     objetivo.draw(_sprite, estados);
-
-    // Selecciona el vector de diálogos según la condición
     const std::vector<std::string>& dialogosActuales = !gideon.estaVivo() ? _dialogos2 : _dialogos;
 
     if (_mostrarDialogo && _dialogoActual < static_cast<int>(dialogosActuales.size())) {

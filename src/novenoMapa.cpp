@@ -295,7 +295,6 @@ void NovenoMapa::handleCollisions()
         {
             cofre.sonidoCofre.play();
             cofre.cambiarTextura();
-            // El estado se guarda automáticamente en el array
         }
     }
     if (dipper.isCollision(libro2))

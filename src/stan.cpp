@@ -99,8 +99,6 @@ void Stan::actualizarPosicionDialogo()
     }
 }
 
-//bool Stan::_debeDesaparecer = false;
-
 
 void Stan::actualizarDialogo(float deltaTime)
 {

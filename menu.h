@@ -21,7 +21,6 @@ private:
     sf::Texture texJuli, texLiz, texJuani;
     sf::CircleShape imagenJuli, imagenLiz, imagenJuani;
 
-    // Nuevas variables para el ingreso de nombre
     bool ingresandoNombre;
     std::string nombreJugador;
     sf::Text textoSolicitudNombre;

@@ -53,7 +53,6 @@ public:
 
     // MOVIMIENTOS
     void iniciarMovimientoAutomatico();
-//    bool haDesaparecido() const;
     void actualizarMovimientoAutomatico();
     void setPosition(const sf::Vector2f& position);
     sf::Vector2f getPosition() const;

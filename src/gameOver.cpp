@@ -5,9 +5,7 @@ GameOver::GameOver()
     // Cargar la fuente
     if (!font.loadFromFile("./Font/letragravityFalls.ttf"))
     {
-        // Manejar el error si no se puede cargar la fuente
     }
-    // Configurar el texto de fin de juego
     gameOverText.setFont(font);
     gameOverText.setString("Juego Finalizado");
     gameOverText.setCharacterSize(50);

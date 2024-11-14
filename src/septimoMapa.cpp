@@ -183,8 +183,6 @@ void SeptimoMapa::update(sf::RenderWindow &window)
     cameraCenter.y = std::max(300.f, std::min(cameraCenter.y, static_cast<float>(tex.getSize().y) - 300.f));
     camera.setCenter(cameraCenter);
 
-//    cambiosDeMapa(window);
-
     // Verificar si el cofre está abierto para iniciar el movimiento de Soos
     static bool movimientoSoosIniciado = false;
     if (estadoDelJuego.getEstadoCofres(1) && !movimientoSoosIniciado && estadoDelJuego.getVidasEnemigos("minotauro")== 0)
@@ -211,11 +209,8 @@ void SeptimoMapa::update(sf::RenderWindow &window)
             }
         }
     }
-
     // Actualizar el diálogo con el tiempo transcurrido
     soos.actualizarDialogo(_relojDialogo.restart().asSeconds());
-
-
 }
 
 
@@ -281,7 +276,6 @@ void SeptimoMapa::handleCollisions()
         {
             cofre.sonidoCofre.play();
             cofre.cambiarTextura();
-            // El estado se guarda automáticamente en el array
         }
     }
     if (dipper.isCollision(libro3))

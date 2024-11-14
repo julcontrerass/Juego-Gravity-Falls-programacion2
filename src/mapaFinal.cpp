@@ -172,7 +172,6 @@ void MapaFinal::update(sf::RenderWindow &window)
                 isInvulnerable = true;
                 invulnerabilityTimer.restart();
                 disparo.kill();
-                // Añadir esta comprobación aquí
                 if (estadoDelJuego.getVidasEnemigos("bill") == 0)
                 {
                     bill.iniciarAnimacionMuerte();

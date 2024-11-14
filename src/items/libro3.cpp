@@ -6,9 +6,7 @@ Libro3::Libro3(){
     _sprite.setOrigin(_sprite.getGlobalBounds().width / 2, _sprite.getGlobalBounds().height);
 }
 
-//void Libro3::update() {
-//    // Aquí podrías actualizar el libro si es necesario
-//}
+
 bool Libro3::agarrado = false;
 
 sf::FloatRect Libro3::getBounds() const {
@@ -20,7 +18,6 @@ void Libro3::draw(sf::RenderTarget& target, sf::RenderStates states) const {
     target.draw(_sprite, states);
 
 }
-// Método para establecer la posición del item
 void Libro3::setPosition(const sf::Vector2f& position)
 {
     _sprite.setPosition(position);

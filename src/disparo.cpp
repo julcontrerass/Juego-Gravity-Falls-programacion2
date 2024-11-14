@@ -2,11 +2,6 @@
 #include <cmath>
 #include <stdexcept>
 
-// Inicialización de las variables estáticas
-sf::Texture Disparo::_texturaGancho;
-sf::Texture Disparo::_texturaCuchillo;
-bool Disparo::_texturasLoaded = false;
-
 void Disparo::loadTexturas() {
     if (!_texturasLoaded) {
         try {
@@ -27,6 +22,10 @@ void Disparo::loadTexturas() {
         }
     }
 }
+
+sf::Texture Disparo::_texturaGancho;
+sf::Texture Disparo::_texturaCuchillo;
+bool Disparo::_texturasLoaded = false;
 
 Disparo::Disparo(const sf::Vector2f& position, const sf::Vector2f& direction, int tipo)
     : _isAlive(true), _tipo(tipo)

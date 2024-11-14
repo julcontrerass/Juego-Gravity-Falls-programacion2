@@ -98,7 +98,7 @@ void EstadoDeMapas::cambiarMapa(sf::RenderWindow &window)
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
         {
             estadoDelJuego.modificarMapa(1);
-            segundoMapa.setPersonajePosition(sf::Vector2f(640, 670));  // Posición inicial en el segundo mapa
+            segundoMapa.setPersonajePosition(sf::Vector2f(640, 670));
             dipper.setInitialTextureRect(0);
             timer = 20;
             click = true;
@@ -110,7 +110,7 @@ void EstadoDeMapas::cambiarMapa(sf::RenderWindow &window)
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
         {
             estadoDelJuego.modificarMapa(7);
-            octavoMapa.setPersonajePosition(sf::Vector2f(350, 555));  // Posición inicial en el octavo mapa
+            octavoMapa.setPersonajePosition(sf::Vector2f(350, 555));
             timer = 20;
             click = true;
         }
@@ -124,7 +124,7 @@ void EstadoDeMapas::cambiarMapa(sf::RenderWindow &window)
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
         {
             estadoDelJuego.modificarMapa(0);
-            primerMapa.setPersonajePosition(sf::Vector2f(300, 550));  // Posición inicial en el segundo mapa
+            primerMapa.setPersonajePosition(sf::Vector2f(300, 550));
             timer = 20;
             click = true;
             dipper.setInitialTextureRect(3);
@@ -136,7 +136,7 @@ void EstadoDeMapas::cambiarMapa(sf::RenderWindow &window)
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space ))
         {
             estadoDelJuego.modificarMapa(2);
-            tercerMapa.setPersonajePosition(sf::Vector2f(1330, 930));  // Posición inicial en el octavo mapa
+            tercerMapa.setPersonajePosition(sf::Vector2f(1330, 930));
             dipper.setInitialTextureRect(3);
             timer = 20;
             click = true;
@@ -149,7 +149,7 @@ void EstadoDeMapas::cambiarMapa(sf::RenderWindow &window)
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
         {
             estadoDelJuego.modificarMapa(3);
-            cuartoMapa.setPersonajePosition(sf::Vector2f(1400, 860));  // Posición inicial en el octavo mapa
+            cuartoMapa.setPersonajePosition(sf::Vector2f(1400, 860));
             dipper.setInitialTextureRect(1);
             timer = 20;
             click = true;
@@ -164,7 +164,7 @@ void EstadoDeMapas::cambiarMapa(sf::RenderWindow &window)
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
         {
             estadoDelJuego.modificarMapa(1);
-            segundoMapa.setPersonajePosition(sf::Vector2f(1420, 200));  // Posición inicial en el segundo mapa
+            segundoMapa.setPersonajePosition(sf::Vector2f(1420, 200));
             timer = 20;
             click = true;
         }
@@ -176,7 +176,7 @@ void EstadoDeMapas::cambiarMapa(sf::RenderWindow &window)
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
         {
             estadoDelJuego.modificarMapa(5);
-            sextoMapa.setPersonajePosition(sf::Vector2f(173, 780));  // Posición inicial en el octavo mapa
+            sextoMapa.setPersonajePosition(sf::Vector2f(173, 780));
             timer = 20;
             click = true;
         }
@@ -190,7 +190,7 @@ void EstadoDeMapas::cambiarMapa(sf::RenderWindow &window)
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
         {
             estadoDelJuego.modificarMapa(1);
-            segundoMapa.setPersonajePosition(sf::Vector2f(95, 950));  // Posición inicial en el segundo mapa
+            segundoMapa.setPersonajePosition(sf::Vector2f(95, 950));
             timer = 20;
             click = true;
         }
@@ -201,7 +201,7 @@ void EstadoDeMapas::cambiarMapa(sf::RenderWindow &window)
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
         {
             estadoDelJuego.modificarMapa(4);
-            quintoMapa.setPersonajePosition(sf::Vector2f(400, 600));  // Posición inicial en el octavo mapa
+            quintoMapa.setPersonajePosition(sf::Vector2f(400, 600));
             timer = 20;
             click = true;
         }
@@ -214,7 +214,7 @@ void EstadoDeMapas::cambiarMapa(sf::RenderWindow &window)
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
         {
             estadoDelJuego.modificarMapa(3);
-            cuartoMapa.setPersonajePosition(sf::Vector2f(1182, 100));  // Posición inicial en el segundo mapa
+            cuartoMapa.setPersonajePosition(sf::Vector2f(1182, 100));
             timer = 20;
             click = true;
         }
@@ -225,7 +225,7 @@ void EstadoDeMapas::cambiarMapa(sf::RenderWindow &window)
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
         {
             estadoDelJuego.modificarMapa(8);
-            novenoMapa.setPersonajePosition(sf::Vector2f(1160, 300));  // Posición inicial en el octavo mapa
+            novenoMapa.setPersonajePosition(sf::Vector2f(1160, 300));
             timer = 20;
             click = true;
         }
@@ -240,7 +240,7 @@ void EstadoDeMapas::cambiarMapa(sf::RenderWindow &window)
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
         {
             estadoDelJuego.modificarMapa(2);
-            tercerMapa.setPersonajePosition(sf::Vector2f(1434, 237));  // Posición inicial en el segundo mapa
+            tercerMapa.setPersonajePosition(sf::Vector2f(1434, 237));
             timer = 20;
             click = true;
         }
@@ -251,7 +251,7 @@ void EstadoDeMapas::cambiarMapa(sf::RenderWindow &window)
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
         {
             estadoDelJuego.modificarMapa(6);
-            septimoMapa.setPersonajePosition(sf::Vector2f(708, 274));  // Posición inicial en el octavo mapa
+            septimoMapa.setPersonajePosition(sf::Vector2f(708, 274));
             timer = 20;
             click = true;
         }
@@ -265,7 +265,7 @@ void EstadoDeMapas::cambiarMapa(sf::RenderWindow &window)
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
         {
             estadoDelJuego.modificarMapa(5);
-            sextoMapa.setPersonajePosition(sf::Vector2f(1373, 243));  // Posición inicial en el segundo mapa
+            sextoMapa.setPersonajePosition(sf::Vector2f(1373, 243));
             timer = 20;
             click = true;
         }
@@ -279,7 +279,7 @@ void EstadoDeMapas::cambiarMapa(sf::RenderWindow &window)
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
         {
             estadoDelJuego.modificarMapa(0);
-            primerMapa.setPersonajePosition(sf::Vector2f(196, 137));  // Posición inicial en el segundo mapa
+            primerMapa.setPersonajePosition(sf::Vector2f(196, 137));
             timer = 20;
             click = true;
         }
@@ -290,7 +290,7 @@ void EstadoDeMapas::cambiarMapa(sf::RenderWindow &window)
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
         {
             estadoDelJuego.modificarMapa(9);
-            mapaFinal.setPersonajePosition(sf::Vector2f(368, 475));  // Posición inicial en el segundo mapa
+            mapaFinal.setPersonajePosition(sf::Vector2f(368, 475));
             timer = 20;
             click = true;
         }
@@ -303,7 +303,7 @@ void EstadoDeMapas::cambiarMapa(sf::RenderWindow &window)
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
         {
             estadoDelJuego.modificarMapa(4);
-            quintoMapa.setPersonajePosition(sf::Vector2f(30, 350));  // Posición inicial en el segundo mapa
+            quintoMapa.setPersonajePosition(sf::Vector2f(30, 350));
             timer = 20;
             click = true;
         }
@@ -316,7 +316,7 @@ void EstadoDeMapas::inicioJuego(bool active)
     iniciado = active;
     if (iniciado)
     {
-        musicaFondo.play();  // La música comienza aquí
+        musicaFondo.play();
     }
     else
     {

@@ -567,7 +567,7 @@ void estadoDelJuego::cargarPartida(const std::string& nombreJugador)
             {
                 jugadorActual = nombre;
 
-                // Cargar todas las variables incluyendo dialogoPermanentementeCompletadoStan
+
                 archivo.read(reinterpret_cast<char*>(&vidasDipper), sizeof(vidasDipper));
                 archivo.read(reinterpret_cast<char*>(&tipoPartida), sizeof(tipoPartida));
                 archivo.read(reinterpret_cast<char*>(cofresAbiertos), sizeof(cofresAbiertos));
@@ -599,7 +599,7 @@ void estadoDelJuego::cargarPartida(const std::string& nombreJugador)
             }
             else
             {
-                // Actualizar el tamaño de datos para incluir dialogoPermanentementeCompletadoStan
+
                 size_t dataSize = sizeof(vidasDipper) + sizeof(tipoPartida) +
                                   sizeof(cofresAbiertos) + sizeof(agarrado1) +
                                   sizeof(agarrado2) + sizeof(agarrado3) +
@@ -763,7 +763,7 @@ void estadoDelJuego::borrarPartida()
         std::vector<char> data(dataSize);
         archivoLectura.read(data.data(), dataSize);
 
-        // Si el nombre no coincide, escribir en el archivo temporal
+
         if (nombre != jugadorActual)
         {
             archivoTemporal.write(reinterpret_cast<const char*>(&nombreLength), sizeof(nombreLength));

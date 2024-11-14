@@ -31,7 +31,6 @@ private:
     Libro1 libro1;
     Libro2 libro2;
     Libro3 libro3;
-//    Dipper dipper;
     estadoDelJuego estadoDelJuego;
 
 

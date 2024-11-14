@@ -15,7 +15,7 @@ Gnomo::Gnomo()
     }
 
     _sprite.setTexture(_textur);
-    _sprite.setTextureRect({0, 0, 50, 55}); // Ajusta estos valores según el tamaño de tu sprite
+    _sprite.setTextureRect({0, 0, 50, 55});
     _sprite.setOrigin(_sprite.getGlobalBounds().width / 2, _sprite.getGlobalBounds().height);
 }
 
@@ -23,10 +23,10 @@ void Gnomo::update(const sf::Vector2f& personajePos) {
     float distancia = std::sqrt(std::pow(personajePos.x - _sprite.getPosition().x, 2) +
                                std::pow(personajePos.y - _sprite.getPosition().y, 2));
 
-    // Reinicia la velocidad
+
     _velocity = {0, 0};
 
-    // Reinicia el frame si se completa un ciclo
+
     if (_frame >= 2) _frame = 0;
 
     if (distancia < 500 && _vidas > 0) {
@@ -42,7 +42,6 @@ void Gnomo::update(const sf::Vector2f& personajePos) {
         _velocity = direccion * 2.0f;
         _direccionMirada = direccion;
 
-        // Actualiza la animación según la dirección
         _frame += 0.2f;
 
         // Actualiza el rectángulo de textura según la dirección del movimiento
@@ -84,7 +83,6 @@ void Gnomo::setInitialTextureRect(int row) {
     _sprite.setTextureRect({50, row * 0, 50, 55});
 }
 
-// Resto de los métodos permanecen igual...
 void Gnomo::disparar(const sf::Vector2f& personajePos) {
     if (_disparoCooldown.getElapsedTime() >= _tiempoEntreDisparos) {
         sf::Vector2f direccionDisparo = personajePos - _sprite.getPosition();

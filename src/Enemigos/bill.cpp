@@ -24,7 +24,7 @@ Bill::Bill()
     }
 
     _sprite.setTexture(_textur);
-    _sprite.setTextureRect({53, 0, 50, 70}); // Ajusta estos valores seg·n el tama±o de tu sprite
+    _sprite.setTextureRect({53, 0, 50, 70});
     _sprite.setOrigin(_sprite.getGlobalBounds().width / 2, _sprite.getGlobalBounds().height);
 }
 
@@ -39,10 +39,8 @@ void Bill::update(const sf::Vector2f& personajePos)
     float distancia = std::sqrt(std::pow(personajePos.x - _sprite.getPosition().x, 2) +
                                 std::pow(personajePos.y - _sprite.getPosition().y, 2));
 
-    // Reinicia la velocidad
     _velocity = {0, 0};
 
-    // Reinicia el frame si se completa un ciclo
     if (_frame >= 2) _frame = 0;
 
     if (distancia < 500 && _vidas > 0)
@@ -62,20 +60,18 @@ void Bill::update(const sf::Vector2f& personajePos)
         _velocity = direccion * 2.0f;
         _direccionMirada = direccion;
 
-        // Actualiza la animaci≤n seg·n la direcci≤n
         _frame += 0.2f;
 
-        // Actualiza el rectßngulo de textura seg·n la direcci≤n del movimiento
         if (std::abs(_direccionMirada.x) > std::abs(_direccionMirada.y))
         {
             if (_direccionMirada.x > 0)
             {
-                // Movimiento hacia la derecha
+                // Movimiento  derecha
                 _sprite.setTextureRect({int(_frame) * 53, 132, 50, 70});
             }
             else
             {
-                // Movimiento hacia la izquierda
+                // Movimiento  izquierda
                 _sprite.setTextureRect({int(_frame) * 53, 70, 50, 70});
             }
         }
@@ -179,7 +175,7 @@ void Bill::actualizarAnimacionMuerte()
 {
     if (_muriendo && !_animacionMuerteCompleta)
     {
-        _frameMuerte += 0.1f; // Velocidad de la animaci≤n
+        _frameMuerte += 0.1f;
 
         if (_frameMuerte >= FRAMES_MUERTE)
         {

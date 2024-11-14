@@ -1,6 +1,5 @@
 #include "../../cofre.h"
 
-// Inicialización del array estático
 bool Cofre::cofresAbiertos[MAX_COFRES] = {false};  // Todos los cofres comienzan cerrados
 
 Cofre::Cofre(int numeroCofre) :
@@ -20,7 +19,6 @@ Cofre::Cofre(int numeroCofre) :
         throw std::runtime_error("No se pudo cargar la textura del cofre abierto");
     }
 
-    // Configurar sprite inicial
     _sprite.setTexture(_textur);
     _sprite.setOrigin(_sprite.getGlobalBounds().width / 2, _sprite.getGlobalBounds().height);
 
@@ -30,7 +28,6 @@ Cofre::Cofre(int numeroCofre) :
         _sprite.setTexture(_texturRecogido);
     }
 
-    // Cargar sonido
     if (!sonidoCofre.openFromFile("./Imagenes/Sonidos/cofreAbriendo.wav")) {
         throw std::runtime_error("No se pudo cargar la música del cofre.");
     }
@@ -58,7 +55,7 @@ bool Cofre::isVisible() const
 
 void Cofre::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
-    if (_visible) // Solo dibuja el cofre si está visible
+    if (_visible)
     {
         target.draw(_sprite, states);
     }
@@ -69,7 +66,7 @@ void Cofre::cambiarTextura()
     if (!_abierto) {
         _sprite.setTexture(_texturRecogido);
         _abierto = true;
-        estadoDelJuego.modificarEstadosCofres(_numeroCofre);  // Actualizar el estado global
+        estadoDelJuego.modificarEstadosCofres(_numeroCofre);
     }
 }
 
@@ -100,7 +97,6 @@ void Cofre::setEstadoCofre(int numeroCofre, bool estado)
     }
 }
 
-// Método para establecer la posición del item
 void Cofre::setPosition(const sf::Vector2f& position)
 {
     _sprite.setPosition(position);
