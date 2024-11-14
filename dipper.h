@@ -1,5 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#pragma once
+#include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include "colisiones.h"
 #include "pocionDeVelocidad.h"
@@ -20,13 +22,10 @@ private:
     sf::Music sonidoBebida;
     float _frame;
     sf::Vector2f _direccionMirada;
-//    static int vidas;
     int timer;
     PocionDeVelocidad pocion;
     bool incremento;
     BebidaDeVida bebida;
-    //disparo
-    TipoDisparo _tipoDisparoActual;
     std::vector<Disparo> _disparos;
     sf::Clock _disparoCooldown;
     const sf::Time _tiempoEntreDisparos = sf::seconds(0.5f);
@@ -35,6 +34,9 @@ private:
     Linterna linterna;
 
     estadoDelJuego estadoDelJuego;
+    bool cambio;
+    int cambioItem;
+
 
 public:
     Dipper();
@@ -44,9 +46,6 @@ public:
     sf::Vector2f getPosition() const ;
     void setPosition(const sf::Vector2f& position);
     void setInitialTextureRect(int row);
-//    int getVidas() const;
-//    void recuperarVidas();
-//    void perderVida();
     void disparar();
     void cambiarTipoDisparo();
     std::vector<Disparo>& getDisparos() { return _disparos; }

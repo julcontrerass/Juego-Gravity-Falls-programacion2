@@ -709,7 +709,87 @@ void estadoDelJuego::borrarPartida(const std::string& nombrePartida)
     }
 }
 
+void estadoDelJuego::borrarPartida()
+{
+    std::ifstream archivoLectura("datosPartidas.dat", std::ios::binary);
+    if (!archivoLectura)
+    {
+        std::cerr << "Error al abrir el archivo de partidas." << std::endl;
+        return;
+    }
 
+    // Crear un archivo temporal para almacenar las partidas restantes
+    std::ofstream archivoTemporal("temp.dat", std::ios::binary);
+    if (!archivoTemporal)
+    {
+        std::cerr << "Error al crear el archivo temporal." << std::endl;
+        archivoLectura.close();
+        return;
+    }
+
+    bool partidaEncontrada = false;
+
+    // Leer todas las partidas y copiar las que no sean la seleccionada al archivo temporal
+    while (archivoLectura && !archivoLectura.eof())
+    {
+        size_t nombreLength;
+        if (!archivoLectura.read(reinterpret_cast<char*>(&nombreLength), sizeof(nombreLength)))
+            break;
+
+        if (nombreLength > 1000 || nombreLength == 0)
+        {
+            archivoLectura.seekg(nombreLength, std::ios::cur);
+            continue;
+        }
+
+        std::string nombre(nombreLength, '\0');
+        if (!archivoLectura.read(&nombre[0], nombreLength))
+            break;
+
+        size_t dataSize = sizeof(vidasDipper) + sizeof(tipoPartida) +
+                                  sizeof(cofresAbiertos) + sizeof(agarrado1) +
+                                  sizeof(agarrado2) + sizeof(agarrado3) +
+                                  sizeof(cuchilloAgarrado) + sizeof(ganchoAgarrado) +
+                                  sizeof(linternaAgarrado) + sizeof(estadoBebidasDeVida) +
+                                  sizeof(estadoPocionesVelocidad) + sizeof(_debeDesaparecerMabel) +
+                                  sizeof(_debeDesaparecerSoos) + sizeof(_debeDesaparecerStan) +
+                                  sizeof(_debeDesaparecerWendy) + sizeof(vidasBill) +
+                                  sizeof(vidasGideon) + sizeof(vidasGnomo) +
+                                  sizeof(vidasMinotauro) + sizeof(cantidadPociones) +
+                                  sizeof(cantidadBebidas) + sizeof(decremento) +
+                                  sizeof(decrementoPociones) + sizeof(muerto);
+
+        std::vector<char> data(dataSize);
+        archivoLectura.read(data.data(), dataSize);
+
+        // Si el nombre no coincide, escribir en el archivo temporal
+        if (nombre != jugadorActual)
+        {
+            archivoTemporal.write(reinterpret_cast<const char*>(&nombreLength), sizeof(nombreLength));
+            archivoTemporal.write(nombre.data(), nombreLength);
+            archivoTemporal.write(data.data(), dataSize);
+        }
+        else
+        {
+            partidaEncontrada = true;
+        }
+    }
+
+    archivoLectura.close();
+    archivoTemporal.close();
+
+    // Reemplazar el archivo original por el temporal
+    if (partidaEncontrada)
+    {
+        std::remove("datosPartidas.dat");
+        std::rename("temp.dat", "datosPartidas.dat");
+    }
+    else
+    {
+        std::remove("temp.dat");
+
+    }
+}
 void estadoDelJuego::nuevaPartida()
 {
     vidasDipper = 5;

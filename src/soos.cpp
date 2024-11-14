@@ -9,7 +9,7 @@ Soos::Soos()
 {
     _textura.loadFromFile("./Imagenes/Personajes/soos.png");
     _sprite.setTexture(_textura);
-    _sprite.setTextureRect({50, 0, 50, 60});
+    _sprite.setTextureRect({50, 139, 50, 72});
     _sprite.setOrigin(_sprite.getGlobalBounds().width / 2, _sprite.getGlobalBounds().height);
 
     // Definir los puntos de ruta para el movimiento automático

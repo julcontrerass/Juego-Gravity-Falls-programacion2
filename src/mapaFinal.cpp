@@ -16,6 +16,7 @@ MapaFinal::MapaFinal()
     zonasBloqueadas.push_back(sf::FloatRect(594, 0, 309, 230));
     zonasBloqueadas.push_back(sf::FloatRect(860, 0, 178, 165));
     zonasBloqueadas.push_back(sf::FloatRect(284, 856, 260, 150));
+    zonasBloqueadas.push_back(sf::FloatRect(768,488,20,20));
     zonasBloqueadas.push_back(sf::FloatRect(207, 363, 672, 109));
     zonasBloqueadas.push_back(sf::FloatRect(207, 363, 118, 290));
     zonasBloqueadas.push_back(sf::FloatRect(207, 566, 469, 111));

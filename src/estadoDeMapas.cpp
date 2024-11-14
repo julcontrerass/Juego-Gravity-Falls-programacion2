@@ -285,8 +285,7 @@ void EstadoDeMapas::cambiarMapa(sf::RenderWindow &window)
         }
     }
     //mapa final
-    //estadoDelJuego.getEstadoPersonajes("stan") &&
-    if ( !click && estadoDelJuego.getMapaActual() == 7 && dipperPosOctavoMapa.x >= 556 && dipperPosOctavoMapa.x <= 724 && dipperPosOctavoMapa.y >= 406 && dipperPosOctavoMapa.y <= 510)
+    if ( estadoDelJuego.getEstadoPersonajes("stan") && !click && estadoDelJuego.getMapaActual() == 7 && dipperPosOctavoMapa.x >= 556 && dipperPosOctavoMapa.x <= 724 && dipperPosOctavoMapa.y >= 406 && dipperPosOctavoMapa.y <= 510)
     {
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
         {
@@ -304,7 +303,7 @@ void EstadoDeMapas::cambiarMapa(sf::RenderWindow &window)
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
         {
             estadoDelJuego.modificarMapa(4);
-            quintoMapa.setPersonajePosition(sf::Vector2f(24, 350));  // Posición inicial en el segundo mapa
+            quintoMapa.setPersonajePosition(sf::Vector2f(30, 350));  // Posición inicial en el segundo mapa
             timer = 20;
             click = true;
         }

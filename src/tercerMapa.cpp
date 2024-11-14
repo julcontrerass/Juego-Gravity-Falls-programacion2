@@ -39,13 +39,6 @@ TercerMapa::TercerMapa() : cofre(0)
     if (!font1.loadFromFile("./font/numeros.ttf")){
          throw std::runtime_error("No se pudo cargar la fuente de las vidas");
     }
-    if (!golpe.openFromFile("./Imagenes/Sonidos/golpeDipper.wav")) {
-        throw std::runtime_error("Error al cargar el sonido de giddeon golpeado");
-    }
-
-    golpe.setVolume(20);
-
-
     imagen.setTexture(tex);
 
     wendy.setPosition(sf::Vector2f(173, 256));
@@ -53,7 +46,6 @@ TercerMapa::TercerMapa() : cofre(0)
     cofre.setPosition(sf::Vector2f(250, 256));
     bebida.setPosition(sf::Vector2f(290, 256));
     gnomo.setPosition(sf::Vector2f(173,300));
-
 
     texVidas.setFont(font1);
     texVidas.setCharacterSize(30);
@@ -170,7 +162,6 @@ void TercerMapa::update(sf::RenderWindow &window)
         {
             if (disparo.isAlive() && !isInvulnerable && dipper.getBounds().intersects(disparo.getBounds()))
             {
-                golpe.play();
                 estadoDelJuego.modificarVidasDipper(-1);
                 isInvulnerable = true;
                 invulnerabilityTimer.restart();

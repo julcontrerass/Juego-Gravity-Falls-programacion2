@@ -92,7 +92,7 @@ void Gnomo::disparar(const sf::Vector2f& personajePos) {
         direccionDisparo /= longitud;
         sf::Vector2f origenBala = _sprite.getPosition();
         origenBala.y -= _sprite.getGlobalBounds().height / 2;
-        _balas.emplace_back(origenBala, direccionDisparo);
+        _balas.emplace_back(origenBala, direccionDisparo,4);
         _disparoCooldown.restart();
     }
 }

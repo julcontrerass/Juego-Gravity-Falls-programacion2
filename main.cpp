@@ -105,9 +105,11 @@ int main()
                 }
                 break;
             case EstadoJuego::PARTIDA_GANADA:
+
                 if (event.type == sf::Event::KeyPressed &&
                         event.key.code == sf::Keyboard::Space)
                 {
+                    estadoDelJuego.borrarPartida();
                     estadoActual = EstadoJuego::MENU;
                 }
                 break;

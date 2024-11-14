@@ -84,6 +84,7 @@ public:
     void borrarPartida(const std::string& nombrePartida);
     void modificarMapa(int mapa);
     int getMapaActual (){return mapaActual;}
+    void borrarPartida();
 
 
 };
