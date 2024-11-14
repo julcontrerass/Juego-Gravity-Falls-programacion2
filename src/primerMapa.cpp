@@ -128,7 +128,7 @@ void PrimerMapa::update(sf::RenderWindow &window)
     const float DISTANCIA_DIALOGO = 100.0f; // Ajusta este valor según necesites
 
     if (distancia < DISTANCIA_DIALOGO) {
-        if (!dialogoIniciado || (estadoDelJuego.tresLibros() && stan.dialogoPermanentementeCompletado())) {
+        if (!dialogoIniciado || (estadoDelJuego.tresLibros() && estadoDelJuego.getEstadoDialogoStan())) {
             stan.iniciarDialogo();
             dialogoIniciado = true;
         }

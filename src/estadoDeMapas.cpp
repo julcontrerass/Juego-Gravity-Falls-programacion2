@@ -93,7 +93,7 @@ void EstadoDeMapas::cambiarMapa(sf::RenderWindow &window)
     sf::Vector2f dipperPosprimerMapa = primerMapa.getDipperPosition();
 
     ///segundo mapa
-    if (!click && estadoDelJuego.getMapaActual() == 0 && dipperPosprimerMapa.x >= 250 && dipperPosprimerMapa.x <= 400 && dipperPosprimerMapa.y >= 483 && dipperPosprimerMapa.y <= 600)
+    if (estadoDelJuego.getEstadosItems("cuchillo") && !click && estadoDelJuego.getMapaActual() == 0 && dipperPosprimerMapa.x >= 250 && dipperPosprimerMapa.x <= 400 && dipperPosprimerMapa.y >= 483 && dipperPosprimerMapa.y <= 600)
     {
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
         {
@@ -105,7 +105,7 @@ void EstadoDeMapas::cambiarMapa(sf::RenderWindow &window)
         }
     }
     /// octavo mapa
-    if (!click && estadoDelJuego.getMapaActual() == 0 && dipperPosprimerMapa.x >= 170 && dipperPosprimerMapa.x <= 280 && dipperPosprimerMapa.y >= 0 && dipperPosprimerMapa.y <= 250)
+    if (estadoDelJuego.getEstadoPersonajes("stan") && !click && estadoDelJuego.getMapaActual() == 0 && dipperPosprimerMapa.x >= 170 && dipperPosprimerMapa.x <= 280 && dipperPosprimerMapa.y >= 0 && dipperPosprimerMapa.y <= 250)
     {
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
         {
@@ -159,7 +159,7 @@ void EstadoDeMapas::cambiarMapa(sf::RenderWindow &window)
     sf::Vector2f dipperPosTercerMapa = tercerMapa.getDipperPosition();
 
     //segundo mapa
-    if (!click && estadoDelJuego.getMapaActual() == 2 && dipperPosTercerMapa.x >= 1300 && dipperPosTercerMapa.x <= 1400 && dipperPosTercerMapa.y >= 900 && dipperPosTercerMapa.y <= 2000)
+    if (estadoDelJuego.getVidasEnemigos("gnomo") == 0 && !click && estadoDelJuego.getMapaActual() == 2 && dipperPosTercerMapa.x >= 1300 && dipperPosTercerMapa.x <= 1400 && dipperPosTercerMapa.y >= 900 && dipperPosTercerMapa.y <= 2000)
     {
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
         {
@@ -171,7 +171,7 @@ void EstadoDeMapas::cambiarMapa(sf::RenderWindow &window)
     }
 
     // sexto mapa
-    if (!click && estadoDelJuego.getMapaActual() == 2 && dipperPosTercerMapa.x >= 1434 && dipperPosTercerMapa.x <= 1492 && dipperPosTercerMapa.y >= 213 && dipperPosTercerMapa.y <= 280)
+    if (estadoDelJuego.getVidasEnemigos("gnomo") == 0 && !click && estadoDelJuego.getMapaActual() == 2 && dipperPosTercerMapa.x >= 1434 && dipperPosTercerMapa.x <= 1492 && dipperPosTercerMapa.y >= 213 && dipperPosTercerMapa.y <= 280)
     {
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
         {
@@ -260,7 +260,7 @@ void EstadoDeMapas::cambiarMapa(sf::RenderWindow &window)
     ///CREAMOS LOS CAMBIOS DE MAPA DEL SEPTIMO MAPA
     sf::Vector2f dipperPosSeptimoMapa = septimoMapa.getDipperPosition();
     //segundo mapa
-    if (!click && estadoDelJuego.getMapaActual() == 6 && dipperPosSeptimoMapa.x >= 651 && dipperPosSeptimoMapa.x <= 800 && dipperPosSeptimoMapa.y >= 220 && dipperPosSeptimoMapa.y <= 400)
+    if (estadoDelJuego.getVidasEnemigos("minotauro") == 0 && !click && estadoDelJuego.getMapaActual() == 6 && dipperPosSeptimoMapa.x >= 651 && dipperPosSeptimoMapa.x <= 800 && dipperPosSeptimoMapa.y >= 220 && dipperPosSeptimoMapa.y <= 400)
     {
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
         {
@@ -298,7 +298,7 @@ void EstadoDeMapas::cambiarMapa(sf::RenderWindow &window)
     ///CREAMOS LOS CAMBIOS DE MAPA DEL NOVENO MAPA
     sf::Vector2f dipperPosNovenoMapa = novenoMapa.getDipperPosition();
     //quinto mapa
-    if ( !click && estadoDelJuego.getMapaActual() == 8 && dipperPosNovenoMapa.x >= 1102 && dipperPosNovenoMapa.x <= 1220 && dipperPosNovenoMapa.y >= 183 && dipperPosNovenoMapa.y <= 273)
+    if ( estadoDelJuego.getVidasEnemigos("gideon") && !click && estadoDelJuego.getMapaActual() == 8 && dipperPosNovenoMapa.x >= 1102 && dipperPosNovenoMapa.x <= 1220 && dipperPosNovenoMapa.y >= 183 && dipperPosNovenoMapa.y <= 273)
     {
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
         {

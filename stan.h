@@ -24,7 +24,6 @@ private:
     bool _dialogoCompletado;
     float _tiempoDialogo;
     const float TIEMPO_ENTRE_DIALOGOS = 2.0f;
-    bool _dialogoPermanentementeCompletado;
     Mochila mochila;
     bool _moviendoseAutomaticamente;
     std::vector<sf::Vector2f> _puntosDeRuta;
@@ -53,10 +52,10 @@ public:
         return _dialogoCompletado;
     }
     bool dialogoPermanentementeCompletado() const;
-    void setPermanentementeCompletado(bool completado)
-    {
-        _dialogoPermanentementeCompletado = completado;
-    }
+//    void setPermanentementeCompletado(bool completado)
+//    {
+//        _dialogoPermanentementeCompletado = completado;
+//    }
     void actualizarPosicionDialogo();
     bool segundoDialogoCompletado() const;
 

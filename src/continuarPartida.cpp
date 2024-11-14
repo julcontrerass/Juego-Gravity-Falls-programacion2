@@ -4,57 +4,69 @@
 #include <iostream>
 #include <algorithm>
 
+// Constructor de la clase ContinuarPartida - Inicializa el menú de continuación de partida
 ContinuarPartida::ContinuarPartida() :
-    opcionSeleccionada(0),
-    lastKeyPress(sf::Keyboard::Unknown),
-    isOpen(false),volver(false)
+    opcionSeleccionada(0),        // Índice de la opción seleccionada actualmente
+    lastKeyPress(sf::Keyboard::Unknown), // Última tecla presionada
+    isOpen(false),                // Estado del menú (abierto/cerrado)
+    volver(false)                 // Flag para volver al menú principal
 {
+    // Carga la fuente personalizada para el texto
     if (!font.loadFromFile("./font/letragravityFalls.ttf"))
     {
         throw std::runtime_error("No se pudo cargar la fuente");
     }
 
+    // Carga la imagen de fondo del menú
     if (!texFondo.loadFromFile("./Imagenes/FondoMenu.jpg"))
     {
         throw std::runtime_error("No se pudo cargar la textura del fondo");
     }
 
+    // Carga el efecto de sonido para la navegación del menú
     if (!bufferSonido.loadFromFile("./Imagenes/Sonidos/sonidoMenu.wav"))
     {
         throw std::runtime_error("Error al cargar el sonido de selección");
     }
 
+    // Configura la imagen de fondo
     imagenFondo.setTexture(texFondo);
+
+    // Configura el sonido de selección
     sonidoSeleccion.setBuffer(bufferSonido);
     sonidoSeleccion.setVolume(50);
 
+    // Configura el título del menú
     titulo.setFont(font);
     titulo.setString("SELECCIONAR PARTIDA");
     titulo.setCharacterSize(35);
-    titulo.setFillColor(sf::Color(143, 159, 97));
+    titulo.setFillColor(sf::Color(143, 159, 97));  // Color verde personalizado
     titulo.setPosition(150, 70);
 
+    // Configura el botón de salir
     salirMenu.setFont(font);
     salirMenu.setCharacterSize(30);
     salirMenu.setString("X");
     salirMenu.setFillColor(sf::Color::Red);
     salirMenu.setPosition(20, 20);
 
+    // Carga las partidas guardadas
     cargarPartidas();
 }
 
+// Carga y configura visualmente las partidas guardadas
 void ContinuarPartida::cargarPartidas()
 {
     std::vector<std::string> nombresPartidas;
-    estadoDelJuego.cargarPartida(nombresPartidas);  // Asumiendo que este método llena el vector
-    partidas.clear();
-    borradores.clear();
+    estadoDelJuego.cargarPartida(nombresPartidas);  // Obtiene los nombres de las partidas guardadas
+    partidas.clear();     // Limpia el vector de textos de partidas
+    borradores.clear();   // Limpia el vector de botones de borrado
 
-    // Crear los textos para mostrar en pantalla
-    float yOffset = 200;
+    // Crea los elementos visuales para cada partida guardada
+    float yOffset = 200;  // Posición vertical inicial
     for (const auto& nombre : nombresPartidas)
     {
-        // Crear texto para el nombre de la partida
+        // Configura el texto del nombre de la partida
         sf::Text partida;
         partida.setFont(font);
         partida.setCharacterSize(30);
@@ -63,7 +75,7 @@ void ContinuarPartida::cargarPartidas()
         partida.setFillColor(sf::Color::White);
         partidas.push_back(partida);
 
-        // Crear texto para el botón de borrar
+        // Configura el botón de borrar para esta partida
         sf::Text borrador;
         borrador.setFont(font);
         borrador.setCharacterSize(30);
@@ -72,9 +84,10 @@ void ContinuarPartida::cargarPartidas()
         borrador.setFillColor(sf::Color::Red);
         borradores.push_back(borrador);
 
-        yOffset += 50;
+        yOffset += 50;  // Incrementa la posición vertical para la siguiente partida
     }
 
+    // Resalta la primera partida si existe alguna
     if (!partidas.empty())
     {
         partidas[0].setFillColor(sf::Color(143, 159, 97));
@@ -82,25 +95,26 @@ void ContinuarPartida::cargarPartidas()
     }
 }
 
+// Dibuja el menú y maneja la interacción con el mouse
 void ContinuarPartida::draw(sf::RenderWindow& window)
 {
-    if (!isOpen) return;
+    if (!isOpen) return;  // No dibuja nada si el menú está cerrado
 
+    // Dibuja los elementos básicos
     window.draw(imagenFondo);
     window.draw(titulo);
-
     window.draw(salirMenu);
 
-    // Obtener la posición actual del mouse
+    // Obtiene la posición actual del mouse
     sf::Vector2i mousePos = sf::Mouse::getPosition(window);
 
-    // Dibujar partidas y borradores
+    // Dibuja y maneja la interacción con las partidas y botones de borrado
     for (size_t i = 0; i < partidas.size(); ++i)
     {
         window.draw(partidas[i]);
         window.draw(borradores[i]);
 
-        // Highlight al pasar el mouse por encima
+        // Efecto hover al pasar el mouse sobre las partidas
         if (partidas[i].getGlobalBounds().contains(mousePos.x, mousePos.y))
         {
             partidas[i].setFillColor(sf::Color(143, 159, 97));
@@ -110,7 +124,7 @@ void ContinuarPartida::draw(sf::RenderWindow& window)
             partidas[i].setFillColor(sf::Color::White);
         }
 
-        // Highlight para el botón de borrar
+        // Efecto hover al pasar el mouse sobre los botones de borrado
         if (borradores[i].getGlobalBounds().contains(mousePos.x, mousePos.y))
         {
             borradores[i].setFillColor(sf::Color::Yellow);
@@ -121,21 +135,24 @@ void ContinuarPartida::draw(sf::RenderWindow& window)
         }
     }
 
-    // Manejo de clics
+    // Manejo de clics del mouse
     static bool mouseWasPressed = false;
     bool mouseIsPressed = sf::Mouse::isButtonPressed(sf::Mouse::Left);
 
-    if (mouseIsPressed && !mouseWasPressed)    // Solo procesar cuando el botón se acaba de presionar
+    // Procesa el clic cuando se presiona el botón
+    if (mouseIsPressed && !mouseWasPressed)
     {
-        // Verificar clic en partidas
+        // Verifica clics en las partidas
         for (size_t i = 0; i < partidas.size(); ++i)
         {
             if (partidas[i].getGlobalBounds().contains(mousePos.x, mousePos.y))
             {
+                // Carga y inicia la partida seleccionada
                 std::string nombreJugador = partidas[i].getString().toAnsiString();
                 estadoDelJuego.cargarPartida(nombreJugador);
                 estadoDelJuego.setJugadorActual(nombreJugador);
                 estadoDelJuego.continuarPartida();
+                estadoMapas.inicioJuego(true);
                 menuInicio::gameStarted = true;
                 iniciarJuego = true;
                 close();
@@ -143,7 +160,7 @@ void ContinuarPartida::draw(sf::RenderWindow& window)
             }
         }
 
-        // Verificar clic en borradores
+        // Verifica clics en los botones de borrado
         for (size_t i = 0; i < borradores.size(); ++i)
         {
             if (borradores[i].getGlobalBounds().contains(mousePos.x, mousePos.y))
@@ -152,22 +169,22 @@ void ContinuarPartida::draw(sf::RenderWindow& window)
                 if (!nombreJugador.empty())
                 {
                     estadoDelJuego.borrarPartida(nombreJugador);
-                    cargarPartidas();  // Recargar la lista después de borrar
-                    break;  // Salir del loop después de borrar
+                    cargarPartidas();  // Recarga la lista después de borrar
+                    break;
                 }
             }
         }
     }
+
+    // Manejo del botón de salir
     static bool clickMouse = false;
     bool click = sf::Mouse::isButtonPressed(sf::Mouse::Left);
 
     if (click && !clickMouse)
     {
-        // Check if the mouse clicked on the "Return to Menu" button
-        sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+        // Verifica si se hizo clic en el botón de "Volver al Menú"
         if (salirMenu.getGlobalBounds().contains(mousePos.x, mousePos.y))
         {
-            // Return to the main menu
             volver = true;
             estadoMapas.inicioJuego(false);
             menuInicio::gameStarted = false;
@@ -177,7 +194,7 @@ void ContinuarPartida::draw(sf::RenderWindow& window)
     clickMouse = click;
 }
 
-
+// Maneja el movimiento de la selección mediante teclado
 void ContinuarPartida::movimiento(sf::RenderWindow& window)
 {
     if (!isOpen || partidas.empty()) return;
@@ -185,6 +202,7 @@ void ContinuarPartida::movimiento(sf::RenderWindow& window)
     bool keyPressed = false;
     sf::Keyboard::Key currentKey = sf::Keyboard::Unknown;
 
+    // Detecta las teclas de navegación (flecha arriba/abajo o W/S)
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) || sf::Keyboard::isKeyPressed(sf::Keyboard::S))
     {
         currentKey = sf::Keyboard::Down;
@@ -196,9 +214,10 @@ void ContinuarPartida::movimiento(sf::RenderWindow& window)
         keyPressed = true;
     }
 
+    // Procesa el movimiento si se presionó una tecla válida y pasó suficiente tiempo
     if (keyPressed && currentKey != lastKeyPress && moveClock.getElapsedTime().asMilliseconds() > 200)
     {
-        // Actualizar la selección
+        // Actualiza la selección según la tecla presionada
         if (currentKey == sf::Keyboard::Down)
         {
             opcionSeleccionada = (opcionSeleccionada + 1) % partidas.size();
@@ -208,7 +227,7 @@ void ContinuarPartida::movimiento(sf::RenderWindow& window)
             opcionSeleccionada = (opcionSeleccionada - 1 + partidas.size()) % partidas.size();
         }
 
-        // Actualizar colores
+        // Actualiza los colores y estilos de las partidas
         for (size_t i = 0; i < partidas.size(); ++i)
         {
             if (i == static_cast<size_t>(opcionSeleccionada))
@@ -223,9 +242,9 @@ void ContinuarPartida::movimiento(sf::RenderWindow& window)
             }
         }
 
+        // Reproduce el sonido de selección y reinicia el temporizador
         sonidoSeleccion.play();
         moveClock.restart();
         lastKeyPress = currentKey;
     }
 }
-

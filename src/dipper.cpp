@@ -143,8 +143,8 @@ void Dipper::update()
 
     //accion de dispara
     // Disparo con la tecla Space
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
-    {
+    if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+{
         disparar();
     }
 

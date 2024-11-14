@@ -6,7 +6,6 @@ Stan::Stan()
     : _frame(0), _velocity(4, 4), _direccionMirada(0, 1),
       _mostrarDialogo(false), _dialogoActual(0),
       _dialogoCompletado(false), _tiempoDialogo(0),
-      _dialogoPermanentementeCompletado(false),
       _moviendoseAutomaticamente(false), _puntoActual(0),
       _velocidadAutomatica(2.0f), _fotograma(0),
       _segundoDialogoCompletado(false),
@@ -129,7 +128,7 @@ void Stan::actualizarDialogo(float deltaTime)
                 _segundoDialogoCompletado = true;
             } else if (!estadoDelJuego.getEstadoPersonajes("stan") && !estadoDelJuego.tresLibros()) {
                 _primerDialogoCompletado = true;
-                _dialogoPermanentementeCompletado = true;
+                estadoDelJuego.cambiarEstadoDialogoStan(true);
             }
         }
         else
@@ -279,11 +278,6 @@ void Stan::actualizarMovimientoAutomatico()
             _direccionMirada = {0, -1};
         }
     }
-}
-
-bool Stan::dialogoPermanentementeCompletado() const
-{
-    return _dialogoPermanentementeCompletado;
 }
 
 

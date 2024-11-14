@@ -46,6 +46,10 @@ private:
 
     static int mapaActual;
 
+    static bool dialogoPermanentementeCompletadoStan;
+
+
+
 
 
 public:
@@ -85,6 +89,6 @@ public:
     void modificarMapa(int mapa);
     int getMapaActual (){return mapaActual;}
     void borrarPartida();
-
-
+    void cambiarEstadoDialogoStan(bool estado);
+    bool getEstadoDialogoStan(){return dialogoPermanentementeCompletadoStan;}
 };

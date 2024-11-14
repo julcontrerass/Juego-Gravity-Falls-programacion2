@@ -32,7 +32,7 @@ int estadoDelJuego::decrementoPociones=0;
 bool estadoDelJuego::muerto=false;
 std::string estadoDelJuego::jugadorActual = "";
 int estadoDelJuego::mapaActual = 0;
-
+bool estadoDelJuego::dialogoPermanentementeCompletadoStan=false;
 
 void estadoDelJuego::continuarPartida()
 {
@@ -322,24 +322,26 @@ bool estadoDelJuego::estaVivo(std::string nombre)
     }
 }
 
+// Clase que maneja el estado del juego y sistema de guardado/cargado
 void estadoDelJuego::guardarPartida() {
+    // Verificar que exista un jugador activo
     if (jugadorActual.empty()) {
         std::cerr << "Error: No se puede guardar partida sin nombre de jugador" << std::endl;
         return;
     }
 
-    // Primero intentamos crear/abrir el archivo temporal
+    // Crear archivo temporal para el guardado seguro
     std::ofstream archivoTemp("datosPartidas.tmp", std::ios::binary);
     if (!archivoTemp) {
         std::cerr << "Error: No se pudo crear el archivo temporal" << std::endl;
         return;
     }
 
-    // Leemos todas las partidas existentes
+    // Vector para almacenar nombres de partidas existentes
     std::vector<std::string> partidas;
     cargarPartida(partidas);
 
-    // Verificamos si ya existe una partida con este nombre
+    // Verificar si la partida ya existe
     bool partidaExistente = false;
     for (const auto& nombre : partidas) {
         if (nombre == jugadorActual) {
@@ -349,20 +351,22 @@ void estadoDelJuego::guardarPartida() {
     }
 
     try {
-        // Si existen partidas previas, las copiamos excepto la que vamos a actualizar
+        // Si hay partidas existentes, copiarlas al archivo temporal (excepto la que se va a actualizar)
         if (!partidas.empty()) {
             std::ifstream archivoOriginal("datosPartidas.dat", std::ios::binary);
             if (archivoOriginal) {
                 while (archivoOriginal) {
+                    // Leer longitud del nombre
                     size_t nombreLength;
                     if (!archivoOriginal.read(reinterpret_cast<char*>(&nombreLength), sizeof(nombreLength))) {
                         break;
                     }
 
+                    // Leer el nombre del jugador
                     std::string nombre(nombreLength, '\0');
                     archivoOriginal.read(&nombre[0], nombreLength);
 
-                    // Calcular el tamaño de los datos de la partida
+                    // Calcular tamaño total de los datos de la partida
                     size_t dataSize = sizeof(vidasDipper) + sizeof(tipoPartida) +
                                     sizeof(cofresAbiertos) + sizeof(agarrado1) +
                                     sizeof(agarrado2) + sizeof(agarrado3) +
@@ -374,13 +378,15 @@ void estadoDelJuego::guardarPartida() {
                                     sizeof(vidasGideon) + sizeof(vidasGnomo) +
                                     sizeof(vidasMinotauro) + sizeof(cantidadPociones) +
                                     sizeof(cantidadBebidas) + sizeof(decremento) +
-                                    sizeof(decrementoPociones) + sizeof(muerto);
+                                    sizeof(decrementoPociones) + sizeof(muerto) +
+                                    sizeof(dialogoPermanentementeCompletadoStan);
 
+                    // Leer los datos de la partida
                     std::vector<char> data(dataSize);
                     archivoOriginal.read(data.data(), dataSize);
 
+                    // Copiar al archivo temporal si no es la partida actual
                     if (nombre != jugadorActual) {
-                        // Copiar partida al archivo temporal
                         archivoTemp.write(reinterpret_cast<const char*>(&nombreLength), sizeof(nombreLength));
                         archivoTemp.write(nombre.c_str(), nombreLength);
                         archivoTemp.write(data.data(), dataSize);
@@ -394,12 +400,12 @@ void estadoDelJuego::guardarPartida() {
             }
         }
 
-        // Escribir la nueva partida
+        // Escribir la nueva partida o actualizar la existente
         size_t nombreLength = jugadorActual.length();
         archivoTemp.write(reinterpret_cast<const char*>(&nombreLength), sizeof(nombreLength));
         archivoTemp.write(jugadorActual.c_str(), nombreLength);
 
-        // Escribir todos los datos del estado
+        // Escribir todos los datos del estado actual del juego
         archivoTemp.write(reinterpret_cast<const char*>(&vidasDipper), sizeof(vidasDipper));
         archivoTemp.write(reinterpret_cast<const char*>(&tipoPartida), sizeof(tipoPartida));
         archivoTemp.write(reinterpret_cast<const char*>(cofresAbiertos), sizeof(cofresAbiertos));
@@ -424,6 +430,7 @@ void estadoDelJuego::guardarPartida() {
         archivoTemp.write(reinterpret_cast<const char*>(&decremento), sizeof(decremento));
         archivoTemp.write(reinterpret_cast<const char*>(&decrementoPociones), sizeof(decrementoPociones));
         archivoTemp.write(reinterpret_cast<const char*>(&muerto), sizeof(muerto));
+        archivoTemp.write(reinterpret_cast<const char*>(&dialogoPermanentementeCompletadoStan), sizeof(dialogoPermanentementeCompletadoStan));
 
         if (!archivoTemp.good()) {
             throw std::runtime_error("Error al escribir nueva partida");
@@ -444,72 +451,65 @@ void estadoDelJuego::guardarPartida() {
     } catch (const std::exception& e) {
         std::cerr << "Error durante el guardado: " << e.what() << std::endl;
         archivoTemp.close();
-        std::remove("datosPartidas.tmp");  // Limpiamos el archivo temporal en caso de error
+        std::remove("datosPartidas.tmp");
     }
 }
-void estadoDelJuego::cargarPartida(std::vector<std::string>& nombresGuardados)
-{
+void estadoDelJuego::cargarPartida(std::vector<std::string>& nombresGuardados) {
     nombresGuardados.clear();
     std::ifstream archivo("datosPartidas.dat", std::ios::binary);
 
-    if (!archivo)
-    {
+    if (!archivo) {
         std::cerr << "No se encontró archivo de partidas guardadas." << std::endl;
         return;
     }
 
-    try
-    {
-        while (archivo && !archivo.eof())
-        {
+    try {
+        while (archivo && !archivo.eof()) {
+            // Leer longitud del nombre
             size_t nombreLength;
-            if (!archivo.read(reinterpret_cast<char*>(&nombreLength), sizeof(nombreLength)))
-            {
+            if (!archivo.read(reinterpret_cast<char*>(&nombreLength), sizeof(nombreLength))) {
                 break;
             }
 
-            // Verificar longitud del nombre válida
-            if (nombreLength > 1000 || nombreLength == 0)
-            {
+            // Verificar que la longitud sea válida
+            if (nombreLength > 1000 || nombreLength == 0) {
                 std::cerr << "Nombre de longitud inválida detectado." << std::endl;
                 break;
             }
 
+            // Leer el nombre
             std::string nombre(nombreLength, '\0');
-            if (!archivo.read(&nombre[0], nombreLength))
-            {
+            if (!archivo.read(&nombre[0], nombreLength)) {
                 break;
             }
 
-            // Verificar si el nombre ya existe en la lista
+            // Evitar nombres duplicados
             bool nombreDuplicado = false;
-            for (const auto& nombreGuardado : nombresGuardados)
-            {
-                if (nombreGuardado == nombre)
-                {
+            for (const auto& nombreGuardado : nombresGuardados) {
+                if (nombreGuardado == nombre) {
                     nombreDuplicado = true;
                     break;
                 }
             }
 
-            if (!nombreDuplicado)
-            {
+            if (!nombreDuplicado) {
                 nombresGuardados.push_back(nombre);
             }
 
-            // Saltar el resto de los datos para esta partida
+            // Saltar los datos de la partida
             size_t dataSize = sizeof(vidasDipper) + sizeof(tipoPartida) +
-                              sizeof(cofresAbiertos) + sizeof(agarrado1) +
-                              sizeof(agarrado2) + sizeof(agarrado3) +
-                              sizeof(cuchilloAgarrado) + sizeof(ganchoAgarrado) +
-                              sizeof(linternaAgarrado) + sizeof(estadoBebidasDeVida) +
-                              sizeof(estadoPocionesVelocidad) + sizeof(_debeDesaparecerMabel) +
-                              sizeof(_debeDesaparecerSoos) + sizeof(_debeDesaparecerStan) +
-                              sizeof(_debeDesaparecerWendy) + sizeof(vidasBill) +
-                              sizeof(vidasGideon) + sizeof(vidasGnomo) +
-                              sizeof(vidasMinotauro) + sizeof(cantidadPociones) +
-                              sizeof(cantidadBebidas) + sizeof(decremento) +
-                              sizeof(decrementoPociones) + sizeof(muerto);
+                                  sizeof(cofresAbiertos) + sizeof(agarrado1) +
+                                  sizeof(agarrado2) + sizeof(agarrado3) +
+                                  sizeof(cuchilloAgarrado) + sizeof(ganchoAgarrado) +
+                                  sizeof(linternaAgarrado) + sizeof(estadoBebidasDeVida) +
+                                  sizeof(estadoPocionesVelocidad) + sizeof(_debeDesaparecerMabel) +
+                                  sizeof(_debeDesaparecerSoos) + sizeof(_debeDesaparecerStan) +
+                                  sizeof(_debeDesaparecerWendy) + sizeof(vidasBill) +
+                                  sizeof(vidasGideon) + sizeof(vidasGnomo) +
+                                  sizeof(vidasMinotauro) + sizeof(cantidadPociones) +
+                                  sizeof(cantidadBebidas) + sizeof(decremento) +
+                                  sizeof(decrementoPociones) + sizeof(muerto) +
+                                  sizeof(dialogoPermanentementeCompletadoStan);
 
             if (!archivo.seekg(dataSize, std::ios::cur))
             {
@@ -551,7 +551,6 @@ void estadoDelJuego::cargarPartida(const std::string& nombreJugador)
                 break;
             }
 
-            // Verificar longitud del nombre válida
             if (nombreLength > 1000)
             {
                 std::cerr << "Nombre de longitud inválida detectado." << std::endl;
@@ -566,10 +565,9 @@ void estadoDelJuego::cargarPartida(const std::string& nombreJugador)
 
             if (nombre == nombreJugador)
             {
-                // Encontramos la partida correcta, cargarla
                 jugadorActual = nombre;
 
-                // Cargar todas las variables de estado del juego
+                // Cargar todas las variables incluyendo dialogoPermanentementeCompletadoStan
                 archivo.read(reinterpret_cast<char*>(&vidasDipper), sizeof(vidasDipper));
                 archivo.read(reinterpret_cast<char*>(&tipoPartida), sizeof(tipoPartida));
                 archivo.read(reinterpret_cast<char*>(cofresAbiertos), sizeof(cofresAbiertos));
@@ -594,13 +592,14 @@ void estadoDelJuego::cargarPartida(const std::string& nombreJugador)
                 archivo.read(reinterpret_cast<char*>(&decremento), sizeof(decremento));
                 archivo.read(reinterpret_cast<char*>(&decrementoPociones), sizeof(decrementoPociones));
                 archivo.read(reinterpret_cast<char*>(&muerto), sizeof(muerto));
+                archivo.read(reinterpret_cast<char*>(&dialogoPermanentementeCompletadoStan), sizeof(dialogoPermanentementeCompletadoStan));
 
                 archivo.close();
                 return;
             }
             else
             {
-                // Saltar los datos de esta partida
+                // Actualizar el tamaño de datos para incluir dialogoPermanentementeCompletadoStan
                 size_t dataSize = sizeof(vidasDipper) + sizeof(tipoPartida) +
                                   sizeof(cofresAbiertos) + sizeof(agarrado1) +
                                   sizeof(agarrado2) + sizeof(agarrado3) +
@@ -612,7 +611,8 @@ void estadoDelJuego::cargarPartida(const std::string& nombreJugador)
                                   sizeof(vidasGideon) + sizeof(vidasGnomo) +
                                   sizeof(vidasMinotauro) + sizeof(cantidadPociones) +
                                   sizeof(cantidadBebidas) + sizeof(decremento) +
-                                  sizeof(decrementoPociones) + sizeof(muerto);
+                                  sizeof(decrementoPociones) + sizeof(muerto) +
+                                  sizeof(dialogoPermanentementeCompletadoStan);
 
                 archivo.seekg(dataSize, std::ios::cur);
             }
@@ -625,7 +625,6 @@ void estadoDelJuego::cargarPartida(const std::string& nombreJugador)
 
     archivo.close();
 }
-
 
 void estadoDelJuego::borrarPartida(const std::string& nombrePartida)
 {
@@ -675,7 +674,8 @@ void estadoDelJuego::borrarPartida(const std::string& nombrePartida)
                                   sizeof(vidasGideon) + sizeof(vidasGnomo) +
                                   sizeof(vidasMinotauro) + sizeof(cantidadPociones) +
                                   sizeof(cantidadBebidas) + sizeof(decremento) +
-                                  sizeof(decrementoPociones) + sizeof(muerto);
+                                  sizeof(decrementoPociones) + sizeof(muerto) +
+                                  sizeof(dialogoPermanentementeCompletadoStan);
 
         std::vector<char> data(dataSize);
         archivoLectura.read(data.data(), dataSize);
@@ -757,7 +757,8 @@ void estadoDelJuego::borrarPartida()
                                   sizeof(vidasGideon) + sizeof(vidasGnomo) +
                                   sizeof(vidasMinotauro) + sizeof(cantidadPociones) +
                                   sizeof(cantidadBebidas) + sizeof(decremento) +
-                                  sizeof(decrementoPociones) + sizeof(muerto);
+                                  sizeof(decrementoPociones) + sizeof(muerto) +
+                                  sizeof(dialogoPermanentementeCompletadoStan);
 
         std::vector<char> data(dataSize);
         archivoLectura.read(data.data(), dataSize);
@@ -817,6 +818,7 @@ void estadoDelJuego::nuevaPartida()
     decrementoPociones = 0;
     muerto = false;
     mapaActual = 0;
+    dialogoPermanentementeCompletadoStan = false;
 }
 
 void estadoDelJuego::setJugadorActual(const std::string& nombre)
@@ -832,6 +834,10 @@ void estadoDelJuego::setJugadorActual(const std::string& nombre)
 
 void estadoDelJuego::modificarMapa(int mapa){
     mapaActual = mapa;
+}
+
+void estadoDelJuego::cambiarEstadoDialogoStan(bool estado){
+    dialogoPermanentementeCompletadoStan = estado;
 }
 
 

@@ -2178,7 +2178,7 @@
 	"colisiones.h"
 	"estadoDelJuego.h"
 
-1731511926 c:\users\xxjul\onedrive\escritorio\juego-gravity-falls-programacion2\stan.h
+1731558172 c:\users\xxjul\onedrive\escritorio\juego-gravity-falls-programacion2\stan.h
 	<SFML/Graphics.hpp>
 	<string>
 	<vector>
@@ -2391,7 +2391,7 @@
 	"../quintoMapa.h"
 	<stdexcept>
 
-1731555127 source:c:\users\xxjul\onedrive\escritorio\juego-gravity-falls-programacion2\src\dipper.cpp
+1731558873 source:c:\users\xxjul\onedrive\escritorio\juego-gravity-falls-programacion2\src\dipper.cpp
 	"../dipper.h"
 
 1731554890 source:c:\users\xxjul\onedrive\escritorio\juego-gravity-falls-programacion2\src\disparo.cpp
@@ -2419,7 +2419,7 @@
 	"../../disparo.h"
 	<cmath>
 
-1731557157 source:c:\users\xxjul\onedrive\escritorio\juego-gravity-falls-programacion2\src\estadodemapas.cpp
+1731559913 source:c:\users\xxjul\onedrive\escritorio\juego-gravity-falls-programacion2\src\estadodemapas.cpp
 	"../estadoDeMapas.h"
 	<iostream>
 	"../stan.h"
@@ -2466,7 +2466,7 @@
 	<stdexcept>
 	<cmath>
 
-1731511926 source:c:\users\xxjul\onedrive\escritorio\juego-gravity-falls-programacion2\src\menu.cpp
+1731562120 source:c:\users\xxjul\onedrive\escritorio\juego-gravity-falls-programacion2\src\menu.cpp
 	"../menu.h"
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
@@ -2489,7 +2489,7 @@
 	<stdexcept>
 	<cmath>
 
-1731513253 source:c:\users\xxjul\onedrive\escritorio\juego-gravity-falls-programacion2\src\primermapa.cpp
+1731561282 source:c:\users\xxjul\onedrive\escritorio\juego-gravity-falls-programacion2\src\primermapa.cpp
 	"../primerMapa.h"
 	<stdexcept>
 	<cmath>
@@ -2524,7 +2524,7 @@
 	"../soos.h"
 	<cmath>
 
-1731511926 source:c:\users\xxjul\onedrive\escritorio\juego-gravity-falls-programacion2\src\stan.cpp
+1731558129 source:c:\users\xxjul\onedrive\escritorio\juego-gravity-falls-programacion2\src\stan.cpp
 	"../stan.h"
 	<iostream>
 	<cmath>
@@ -2684,7 +2684,7 @@
 	"colisiones.h"
 	"disparo.h"
 
-1731553454 c:\users\xxjul\onedrive\escritorio\juego-gravity-falls-programacion2\estadodeljuego.h
+1731560838 c:\users\xxjul\onedrive\escritorio\juego-gravity-falls-programacion2\estadodeljuego.h
 	<iostream>
 	<fstream>
 	<vector>
@@ -2694,7 +2694,7 @@
 	<fstream>
 	<vector>
 
-1731553640 source:c:\users\xxjul\onedrive\escritorio\juego-gravity-falls-programacion2\src\estadodeljuego.cpp
+1731561030 source:c:\users\xxjul\onedrive\escritorio\juego-gravity-falls-programacion2\src\estadodeljuego.cpp
 	"../estadoDelJuego.h"
 	<vector>
 	<iostream>
@@ -2708,7 +2708,7 @@
 	"menu.h"
 	<vector>
 
-1731511926 source:c:\users\xxjul\onedrive\escritorio\juego-gravity-falls-programacion2\src\continuarpartida.cpp
+1731561415 source:c:\users\xxjul\onedrive\escritorio\juego-gravity-falls-programacion2\src\continuarpartida.cpp
 	"../continuarPartida.h"
 	"../menu.h"
 	<vector>
@@ -2728,6 +2728,6 @@
 	<SFML/Graphics.hpp>
 	"estadoDelJuego.h"
 
-1731553872 source:c:\users\xxjul\onedrive\escritorio\juego-gravity-falls-programacion2\src\pantallaganador.cpp
+1731557169 source:c:\users\xxjul\onedrive\escritorio\juego-gravity-falls-programacion2\src\pantallaganador.cpp
 	"../../pantallaGanador.h"
 
